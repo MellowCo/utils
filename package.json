@@ -4,6 +4,10 @@
   "version": "0.0.1",
   "packageManager": "pnpm@7.2.1",
   "description": "",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "license": "MIT",
   "funding": "https://github.com/MellowCo/utils",
   "homepage": "https://github.com/MellowCo/utils",
