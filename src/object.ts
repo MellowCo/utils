@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-06-28 20:54:33
- * @LastEditTime: 2022-06-28 21:29:31
+ * @LastEditTime: 2022-06-29 21:09:39
  * @LastEditors: licl
  * @Description:
  */
@@ -30,4 +30,8 @@ export function clearUndefined(obj: any) {
     return obj.map((item: any) => clearUndefined(item))
 
   return obj
+}
+
+export function isObject(arg: any) {
+  return typeof arg === 'object'
 }
