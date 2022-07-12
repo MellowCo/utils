@@ -1,37 +1,39 @@
 /*
  * @Author: licl
  * @Date: 2022-06-28 20:09:58
- * @LastEditTime: 2022-06-28 20:25:23
+ * @LastEditTime: 2022-07-12 08:32:32
  * @LastEditors: licl
  * @Description: localStorage
  */
 import { decrypt, encrypt } from './encrypt'
 
-export function setStorage(key: string, value: string | object) {
+export function setStorage(key: string, value: string | object, needEncrypt = true) {
   if (typeof value === 'object')
     value = JSON.stringify(value)
 
-  value = encrypt(value, key)
+  if (needEncrypt)
+    value = encrypt(`${value}`, key)
   localStorage.setItem(key, value)
 }
 
-export function getStorage(key: string) {
-  const value = localStorage.getItem(key)
+export function getStorage(key: string, needEncrypt = true) {
+  let value = localStorage.getItem(key)
   if (!value)
     return null
 
-  const decryptValue = decrypt(value, key)
+  if (needEncrypt)
+    value = decrypt(value, key)
 
-  const isObject = decryptValue.startsWith('{') && decryptValue.endsWith('}')
-  const isArray = decryptValue.startsWith('[') && decryptValue.endsWith(']')
+  const isObject = value.startsWith('{') && value.endsWith('}')
+  const isArray = value.startsWith('[') && value.endsWith(']')
 
   if (isArray || isObject)
-    return JSON.parse(decryptValue)
+    return JSON.parse(value)
 
-  return decryptValue
+  return value
 }
 
-export function deleteStorage(key: string) {
+export function removeStorage(key: string) {
   localStorage.removeItem(key)
 }
 
