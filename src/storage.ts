@@ -1,13 +1,12 @@
-/*
- * @Author: licl
- * @Date: 2022-06-28 20:09:58
- * @LastEditTime: 2022-07-12 08:32:32
- * @LastEditors: licl
- * @Description: localStorage
- */
 import { decrypt, encrypt } from './encrypt'
 
-export function setStorage(key: string, value: string | object, needEncrypt = true) {
+/**
+ * 设置localStorage
+ * @param key - 存储的键
+ * @param value - 未加密的值
+ * @param needEncrypt - 是否需要加密
+ */
+export function setStorage(key: string, value: string | object, needEncrypt = true): void {
   if (typeof value === 'object')
     value = JSON.stringify(value)
 
@@ -16,7 +15,13 @@ export function setStorage(key: string, value: string | object, needEncrypt = tr
   localStorage.setItem(key, value)
 }
 
-export function getStorage(key: string, needEncrypt = true) {
+/**
+ * 获取localStorage
+ * @param key - 存储的键
+ * @param needEncrypt - 是否需要加密
+ * @returns {string | null} - 获取的值
+ */
+export function getStorage(key: string, needEncrypt = true): string | null {
   let value = localStorage.getItem(key)
   if (!value)
     return null
@@ -33,10 +38,17 @@ export function getStorage(key: string, needEncrypt = true) {
   return value
 }
 
-export function removeStorage(key: string) {
+/**
+ * 删除localStorage
+ * @param key - 存储的键
+ */
+export function removeStorage(key: string): void {
   localStorage.removeItem(key)
 }
 
+/**
+ * 清空localStorage
+ */
 export function clearStorage() {
   localStorage.clear()
 }

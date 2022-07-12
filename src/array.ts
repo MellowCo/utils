@@ -1,9 +1,7 @@
-/*
- * @Author: licl
- * @Date: 2022-06-28 21:09:32
- * @LastEditTime: 2022-06-28 21:09:34
- * @LastEditors: licl
- * @Description:
+/**
+ * 是否为数组
+ * @param {any} obj  - 对象
+ * @returns {boolean} - 是否为数组
  */
 export function isArray(obj: any): boolean {
   return Array.isArray(obj)
