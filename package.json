@@ -68,6 +68,7 @@
     "vitest": "^0.15.2"
   },
   "dependencies": {
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.4"
   }
 }
