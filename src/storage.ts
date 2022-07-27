@@ -19,7 +19,7 @@ export function setStorage(key: string, value: string | object, needEncrypt = tr
  * 获取localStorage
  * @param key - 存储的键
  * @param needEncrypt - 是否需要加密
- * @returns {string | null} - 获取的值
+ * @returns 获取的值
  */
 export function getStorage(key: string, needEncrypt = true): string | null {
   let value = localStorage.getItem(key)

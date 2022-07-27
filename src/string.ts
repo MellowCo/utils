@@ -11,7 +11,7 @@ const camelizeRE = /-(\w)/g
 /**
  * 驼峰化
  * @param str - 字符串
- * @returns 驼峰化后的字符串 user-info => userInfo
+ * @returns user-info => userInfo
  */
 export const camelize = (str: string): string => {
   return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
@@ -20,7 +20,7 @@ export const camelize = (str: string): string => {
 /**
  * 首字母大写
  * @param str - 字符串
- * @returns 首字母大写后的字符串 userInfo => UserInfo
+ * @returns userInfo => UserInfo
  */
 export const capitalize
   = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
