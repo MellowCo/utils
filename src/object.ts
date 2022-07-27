@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-06-28 20:54:33
- * @LastEditTime: 2022-07-27 21:12:15
+ * @LastEditTime: 2022-07-27 21:16:31
  * @LastEditors: licl
  * @Description:
  */
@@ -51,13 +51,21 @@ export function isObject(arg: any): boolean {
   return typeof arg === 'object'
 }
 
-const hasOwnProperty = Object.prototype.hasOwnProperty
 /**
  * 是否为对象的属性
  * @param val - 对象
  * @param key - 键
  */
+const hasOwnProperty = Object.prototype.hasOwnProperty
 export const hasOwn = (
   val: object,
   key: string | symbol,
 ): key is keyof typeof val => hasOwnProperty.call(val, key)
+
+export const objectToString = Object.prototype.toString
+/**
+ * 对象类型
+ * @param value - 对象
+ */
+export const toTypeString = (value: unknown): string =>
+  objectToString.call(value)
