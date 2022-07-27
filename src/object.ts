@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-06-28 20:54:33
- * @LastEditTime: 2022-07-27 21:16:31
+ * @LastEditTime: 2022-07-27 21:37:55
  * @LastEditors: licl
  * @Description:
  */
@@ -44,12 +44,11 @@ export function clearNull(obj: any): any {
 
 /**
  * 是否为对象
- * @param arg - 参数
+ * @param val - 参数
  * @returns 是否为对象
  */
-export function isObject(arg: any): boolean {
-  return typeof arg === 'object'
-}
+export const isObject = (val: unknown): val is Record<any, any> =>
+  val !== null && typeof val === 'object'
 
 /**
  * 是否为对象的属性
@@ -69,3 +68,12 @@ export const objectToString = Object.prototype.toString
  */
 export const toTypeString = (value: unknown): string =>
   objectToString.call(value)
+
+/**
+ * 比较一个值是否改变
+ * @param value - 对象
+ * @param oldValue - 对象
+ *
+ */
+export const hasChanged = (value: any, oldValue: any): boolean =>
+  !Object.is(value, oldValue)
