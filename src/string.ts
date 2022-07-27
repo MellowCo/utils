@@ -16,3 +16,11 @@ const camelizeRE = /-(\w)/g
 export const camelize = (str: string): string => {
   return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
 }
+
+/**
+ * 首字母大写
+ * @param str - 字符串
+ * @returns 首字母大写后的字符串
+ */
+export const capitalize
+  = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
