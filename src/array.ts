@@ -1,3 +1,5 @@
+import { toTypeString } from './object'
+
 /**
  * 是否为数组
  * @param obj  - 对象
@@ -17,3 +19,17 @@ export const remove = <T>(arr: T[], el: T) => {
   if (i > -1)
     arr.splice(i, 1)
 }
+
+/**
+ * isMap
+ * @param val - 对象
+ */
+export const isMap = (val: unknown): val is Map<any, any> =>
+  toTypeString(val) === '[object Map]'
+
+/**
+ * isSet
+ * @param val - 对象
+ */
+export const isSet = (val: unknown): val is Set<any> =>
+  toTypeString(val) === '[object Set]'
