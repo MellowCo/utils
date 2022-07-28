@@ -1,12 +1,3 @@
-/**
- * 是否为string
- * @param arg - 参数
- * @returns 是否为string
- */
-export function isString(arg: any): boolean {
-  return typeof arg === 'string'
-}
-
 const camelizeRE = /-(\w)/g
 /**
  * 驼峰化
@@ -34,3 +25,15 @@ const hyphenateRE = /\B([A-Z])/g
 export const hyphenate = (str: string) =>
   str.replace(hyphenateRE, '-$1').toLowerCase()
 
+/**
+ * Nano version of string hash
+ * @param str - 字符串
+ * @returns foo => 193420387
+ */
+export const stringHash = (str: string): number => {
+  let hash = 5381
+  let i = str.length
+
+  while (i--) hash = ((hash << 5) - hash) ^ str.charCodeAt(i)
+  return hash >>> 0
+}
