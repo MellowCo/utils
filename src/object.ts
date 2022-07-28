@@ -1,12 +1,12 @@
 /*
  * @Author: licl
  * @Date: 2022-06-28 20:54:33
- * @LastEditTime: 2022-07-27 21:37:55
+ * @LastEditTime: 2022-07-28 14:10:36
  * @LastEditors: licl
  * @Description:
  */
 
-import { isArray } from './array'
+import { isArray } from '.'
 
 /**
  * 深度拷贝对象
