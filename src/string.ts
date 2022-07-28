@@ -37,3 +37,14 @@ export const stringHash = (str: string): number => {
   while (i--) hash = ((hash << 5) - hash) ^ str.charCodeAt(i)
   return hash >>> 0
 }
+
+/**
+ * uuid
+ */
+export const uuid = (): string => {
+  return Array.from({ length: 16 }, () =>
+    Math.floor(Math.random() * 256)
+      .toString(16)
+      .padStart(2, '0'),
+  ).join('')
+}
