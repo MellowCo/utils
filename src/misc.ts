@@ -29,3 +29,12 @@ export const uuid = (): string => {
       .padStart(2, '0'),
   ).join('')
 }
+
+/**
+ * 随机十六进制颜色
+ * @returns #e34155
+ */
+export function randomHexColorCode() {
+  const n = (Math.random() * 0xFFFFF * 1000000).toString(16)
+  return `#${n.slice(0, 6)}`
+}
