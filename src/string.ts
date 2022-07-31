@@ -34,3 +34,19 @@ export const hyphenate = (str: string) =>
 export function replaceAll(text: string, repstr: string, newstr: string) {
   return text.replace(new RegExp(repstr, 'gm'), newstr)
 }
+
+/**
+ * @desc 去左右空格
+ * @param  value - 需要处理的字符串
+ */
+export function trim(value: string) {
+  return value.replace(/(^\s*)|(\s*$)/g, '')
+}
+
+/**
+ * @desc 去所有空格
+ * @param value - 需要处理的字符串
+ */
+export function trimAll(value: string) {
+  return value.replace(/\s+/g, '')
+}
