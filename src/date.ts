@@ -1,10 +1,3 @@
-/*
- * @Author: licl
- * @Date: 2022-07-20 11:28:43
- * @LastEditTime: 2022-07-27 20:55:54
- * @LastEditors: licl
- * @Description:
- */
 import dayjs from 'dayjs'
 
 export enum dateFormatTag {

@@ -1,11 +1,3 @@
-/*
- * @Author: licl
- * @Date: 2022-06-28 20:51:40
- * @LastEditTime: 2022-07-27 20:58:06
- * @LastEditors: licl
- * @Description: promise
- */
-
 import type { Fn } from './types'
 
 /**

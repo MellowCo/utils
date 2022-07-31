@@ -1,11 +1,3 @@
-/*
- * @Author: licl
- * @Date: 2022-06-28 20:54:33
- * @LastEditTime: 2022-07-28 14:10:36
- * @LastEditors: licl
- * @Description:
- */
-
 import { isArray } from '.'
 
 /**
