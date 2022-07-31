@@ -35,14 +35,6 @@ export function clearNull(obj: any): any {
 }
 
 /**
- * 是否为对象
- * @param val - 参数
- * @returns 是否为对象
- */
-export const isObject = (val: unknown): val is Record<any, any> =>
-  val !== null && typeof val === 'object'
-
-/**
  * 是否为对象的属性
  * @param val - 对象
  * @param key - 键

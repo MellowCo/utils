@@ -13,7 +13,7 @@ describe('date', () => {
   it('formatDate', () => {
     // const now = new Date()
 
-    expect(formatDate()).toMatchInlineSnapshot('"2022-07-28 14:15:40"')
+    expect(formatDate()).toMatchInlineSnapshot('"2022-07-31 21:25:55"')
     // expect(formatDate({ date: now })).toMatchInlineSnapshot('"2022-07-28 14:15:02"')
     // expect(formatDate({ date: now, toDate: true })).toMatchInlineSnapshot('2022-07-27T13:24:44.155Z')
     expect(formatDate({ date: '2022-07-20 13:42:20', format: dateFormatTag.toDay })).toMatchInlineSnapshot('"2022-07-20"')
@@ -92,8 +92,8 @@ describe('date', () => {
   it('getDaysOfWeek', () => {
     expect(getDaysOfWeek()).toMatchInlineSnapshot(`
       [
-        "2022-07-24",
-        "2022-07-30",
+        "2022-07-31",
+        "2022-08-06",
       ]
     `)
   })
@@ -102,19 +102,19 @@ describe('date', () => {
     expect(getDaysToNowOfMonth()).toMatchInlineSnapshot(`
       [
         "2022-07-01",
-        "2022-07-28",
+        "2022-07-31",
       ]
     `)
     expect(getDaysToNowOfMonth({ format: dateFormatTag.toSecond })).toMatchInlineSnapshot(`
       [
         "2022-07-01 00:00:00",
-        "2022-07-28 14:15:40",
+        "2022-07-31 21:25:55",
       ]
     `)
     expect(getDaysToNowOfMonth({ year: 2014 })).toMatchInlineSnapshot(`
       [
         "2014-07-01",
-        "2022-07-28",
+        "2022-07-31",
       ]
     `)
   })
