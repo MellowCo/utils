@@ -18,3 +18,13 @@ export const remove = <T>(arr: T[], el: T) => {
 export function all(arr: unknown[], fn = Boolean) {
   return arr.every(fn)
 }
+
+/**
+ * 检查数组各项相等
+ * @param arr - 数组
+ * @returns allEqual([4, 2, 3]) => false
+ * @returns allEqual([4, 4, 4]) => true
+ */
+export function allEqual(arr: unknown[]) {
+  return arr.every(val => val === arr[0])
+}
