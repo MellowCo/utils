@@ -25,26 +25,3 @@ const hyphenateRE = /\B([A-Z])/g
 export const hyphenate = (str: string) =>
   str.replace(hyphenateRE, '-$1').toLowerCase()
 
-/**
- * Nano version of string hash
- * @param str - 字符串
- * @returns foo => 193420387
- */
-export const stringHash = (str: string): number => {
-  let hash = 5381
-  let i = str.length
-
-  while (i--) hash = ((hash << 5) - hash) ^ str.charCodeAt(i)
-  return hash >>> 0
-}
-
-/**
- * uuid
- */
-export const uuid = (): string => {
-  return Array.from({ length: 16 }, () =>
-    Math.floor(Math.random() * 256)
-      .toString(16)
-      .padStart(2, '0'),
-  ).join('')
-}
