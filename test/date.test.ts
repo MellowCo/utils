@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-07-20 11:39:40
- * @LastEditTime: 2022-07-28 14:15:25
+ * @LastEditTime: 2022-07-31 21:59:33
  * @LastEditors: licl
  * @Description:
  */
@@ -13,7 +13,7 @@ describe('date', () => {
   it('formatDate', () => {
     // const now = new Date()
 
-    expect(formatDate()).toMatchInlineSnapshot('"2022-07-31 21:25:55"')
+    // expect(formatDate()).toMatchInlineSnapshot('"2022-07-31 21:59:37"')
     // expect(formatDate({ date: now })).toMatchInlineSnapshot('"2022-07-28 14:15:02"')
     // expect(formatDate({ date: now, toDate: true })).toMatchInlineSnapshot('2022-07-27T13:24:44.155Z')
     expect(formatDate({ date: '2022-07-20 13:42:20', format: dateFormatTag.toDay })).toMatchInlineSnapshot('"2022-07-20"')
@@ -36,12 +36,12 @@ describe('date', () => {
         "2022-07-31",
       ]
     `)
-    expect(getDaysOfMonth({ format: dateFormatTag.toSecond })).toMatchInlineSnapshot(`
-      [
-        "2022-07-01 00:00:00",
-        "2022-07-31 23:59:59",
-      ]
-    `)
+    // expect(getDaysOfMonth({ format: dateFormatTag.toSecond })).toMatchInlineSnapshot(`
+    //   [
+    //     "2022-07-01 00:00:00",
+    //     "2022-07-31 23:59:59",
+    //   ]
+    // `)
     expect(getDaysOfMonth({ date: new Date() })).toMatchInlineSnapshot(`
       [
         "2022-07-01",
@@ -105,12 +105,12 @@ describe('date', () => {
         "2022-07-31",
       ]
     `)
-    expect(getDaysToNowOfMonth({ format: dateFormatTag.toSecond })).toMatchInlineSnapshot(`
-      [
-        "2022-07-01 00:00:00",
-        "2022-07-31 21:25:55",
-      ]
-    `)
+    // expect(getDaysToNowOfMonth({ format: dateFormatTag.toSecond })).toMatchInlineSnapshot(`
+    //   [
+    //     "2022-07-01 00:00:00",
+    //     "2022-07-31 21:55:31",
+    //   ]
+    // `)
     expect(getDaysToNowOfMonth({ year: 2014 })).toMatchInlineSnapshot(`
       [
         "2014-07-01",

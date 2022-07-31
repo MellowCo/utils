@@ -38,3 +38,12 @@ export function randomHexColorCode() {
   const n = (Math.random() * 0xFFFFF * 1000000).toString(16)
   return `#${n.slice(0, 6)}`
 }
+
+/**
+ * 手机号码中间4位隐藏星号
+ * @param mobile - 手机号
+ * @returns 138****8888
+ */
+export function hideMobile(mobile: string) {
+  return mobile.replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2')
+}
