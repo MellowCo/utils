@@ -24,3 +24,15 @@ export const isObject = (val: unknown): val is Record<any, any> =>
 export const isPromise = <T = any>(val: unknown): val is Promise<T> => {
   return isObject(val) && isFunction(val.then) && isFunction(val.catch)
 }
+
+/**
+ * 是否为纯粹的对象
+ * isObject([]) 是 true ，因为 type [] 为 'object'
+ * isPlainObject([]) 则是false
+ */
+export const isPlainObject = (val: unknown): val is object =>
+  toTypeString(val) === '[object Object]'
+
+export function isUndef(v: unknown) {
+  return v === undefined || v === null
+}
