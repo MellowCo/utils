@@ -137,11 +137,6 @@ describe('object', () => {
       ],
     }
 
-    const cloneUser = clone(user)
-    cloneUser.age = 19
-    cloneUser.obj.age = 100
-    cloneUser.arr[0].age = 110
-
     expect(user.age).toBe(18)
     expect(user.obj.age).toBe(18)
     expect(user.arr[0].age).toBe(18)

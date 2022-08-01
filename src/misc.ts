@@ -88,3 +88,11 @@ export function hexToRGB(hex: string) {
       }
     : null
 }
+
+/**
+ * 随机布尔值
+ * @returns true or false
+ */
+export function randomBoolean() {
+  return Math.random() >= 0.5
+}
