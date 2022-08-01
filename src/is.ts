@@ -25,6 +25,8 @@ export const isPromise = <T = any>(val: unknown): val is Promise<T> => {
   return isObject(val) && isFunction(val.then) && isFunction(val.catch)
 }
 
+export const isNumber = (val: any): val is number => typeof val === 'number'
+
 /**
  * 是否为纯粹的对象
  * isObject([]) 是 true ，因为 type [] 为 'object'
