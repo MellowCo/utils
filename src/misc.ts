@@ -32,6 +32,24 @@ export const uuid = (): string => {
   ).join('')
 }
 
+const urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict'
+
+/**
+ * nanoid
+ * @param alphabet - 字符串
+ * @param defaultSize - 长度
+ */
+export const nanoid = (alphabet = urlAlphabet, defaultSize = 21) => {
+  let id = ''
+  // A compact alternative for `for (var i = 0; i < step; i++)`.
+  let i = defaultSize
+  while (i--) {
+    // `| 0` is more compact and faster than `Math.floor()`.
+    id += alphabet[(Math.random() * 64) | 0]
+  }
+  return id
+}
+
 /**
  * 随机十六进制颜色
  * @returns #e34155
