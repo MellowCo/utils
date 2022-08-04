@@ -50,3 +50,12 @@ export function trim(value: string) {
 export function trimAll(value: string) {
   return value.replace(/\s+/g, '')
 }
+
+/**
+ * 根据数字获取对应的汉字
+ * @param num - 数字(0-10)
+ */
+export function getHanByNumber(num: number) {
+  const HAN_STR = '零一二三四五六七八九十'
+  return HAN_STR.charAt(num)
+}

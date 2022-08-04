@@ -39,7 +39,7 @@ const urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwy
  * @param alphabet - 字符串
  * @param defaultSize - 长度
  */
-export const nanoid = (alphabet = urlAlphabet, defaultSize = 21) => {
+export const nanoid = (defaultSize = 21, alphabet = urlAlphabet) => {
   let id = ''
   // A compact alternative for `for (var i = 0; i < step; i++)`.
   let i = defaultSize
