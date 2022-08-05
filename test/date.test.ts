@@ -102,7 +102,7 @@ describe('date', () => {
     expect(getDaysToNowOfMonth()).toMatchInlineSnapshot(`
       [
         "2022-08-01",
-        "2022-08-01",
+        "2022-08-05",
       ]
     `)
     // expect(getDaysToNowOfMonth({ format: dateFormatTag.toSecond })).toMatchInlineSnapshot(`
@@ -114,7 +114,7 @@ describe('date', () => {
     expect(getDaysToNowOfMonth({ year: 2014 })).toMatchInlineSnapshot(`
       [
         "2014-08-01",
-        "2022-08-01",
+        "2022-08-05",
       ]
     `)
   })

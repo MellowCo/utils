@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { clearNull, clone } from '../src/object'
+import { clearNull } from '../src/object'
 
 describe('object', () => {
   it('clearNull', () => {
