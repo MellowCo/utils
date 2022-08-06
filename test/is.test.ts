@@ -1,12 +1,12 @@
 /*
  * @Author: licl
  * @Date: 2022-07-31 21:17:18
- * @LastEditTime: 2022-08-06 20:17:17
+ * @LastEditTime: 2022-08-06 20:19:01
  * @LastEditors: licl
  * @Description:
  */
 import { describe, expect, it } from 'vitest'
-import { isNull, isObject, isPlainObject } from '../src/'
+import { isNull, isObject, isPlainObject, isUndefined } from '../src/'
 
 describe('object', () => {
   it('isObject', () => {
@@ -27,5 +27,11 @@ describe('object', () => {
     expect(isNull({})).toBe(false)
     expect(isNull(null)).toBe(true)
     expect(isNull(undefined)).toBe(false)
+  })
+
+  it('isUndefined', () => {
+    expect(isUndefined({})).toBe(false)
+    expect(isUndefined(null)).toBe(false)
+    expect(isUndefined(undefined)).toBe(true)
   })
 })
