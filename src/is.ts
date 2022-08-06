@@ -27,6 +27,8 @@ export const isNull = (val: unknown): val is null => toTypeString(val) === '[obj
 
 export const isUndefined = (val: unknown): val is undefined => toTypeString(val) === '[object Undefined]'
 
+export const isRegExp = (val: unknown): val is RegExp => toTypeString(val) === '[object RegExp]'
+
 /**
  * 是否为纯粹的对象
  * isObject([]) 是 true ，因为 type [] 为 'object'

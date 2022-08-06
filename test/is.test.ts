@@ -1,12 +1,12 @@
 /*
  * @Author: licl
  * @Date: 2022-07-31 21:17:18
- * @LastEditTime: 2022-08-06 20:24:30
+ * @LastEditTime: 2022-08-06 20:31:04
  * @LastEditors: licl
  * @Description:
  */
 import { describe, expect, it } from 'vitest'
-import { isEmpty, isEmptyString, isNull, isObject, isPlainObject, isUndef, isUndefined } from '../src/'
+import { isEmpty, isEmptyString, isNull, isObject, isPlainObject, isRegExp, isUndef, isUndefined } from '../src/'
 
 describe('object', () => {
   it('isObject', () => {
@@ -55,5 +55,15 @@ describe('object', () => {
     expect(isEmpty(undefined)).toBe(true)
     expect(isEmpty('')).toBe(true)
     expect(isEmpty('111')).toBe(false)
+  })
+
+  it('isRegExp', () => {
+    expect(isRegExp({})).toBe(false)
+    expect(isRegExp(null)).toBe(false)
+    expect(isRegExp(undefined)).toBe(false)
+    expect(isRegExp('')).toBe(false)
+    expect(isRegExp('111')).toBe(false)
+    expect(isRegExp(/xx/)).toBe(true)
+    expect(isRegExp(new RegExp('111'))).toBe(true)
   })
 })
