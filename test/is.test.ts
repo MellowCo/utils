@@ -1,12 +1,12 @@
 /*
  * @Author: licl
  * @Date: 2022-07-31 21:17:18
- * @LastEditTime: 2022-08-06 20:19:01
+ * @LastEditTime: 2022-08-06 20:24:30
  * @LastEditors: licl
  * @Description:
  */
 import { describe, expect, it } from 'vitest'
-import { isNull, isObject, isPlainObject, isUndefined } from '../src/'
+import { isEmpty, isEmptyString, isNull, isObject, isPlainObject, isUndef, isUndefined } from '../src/'
 
 describe('object', () => {
   it('isObject', () => {
@@ -33,5 +33,27 @@ describe('object', () => {
     expect(isUndefined({})).toBe(false)
     expect(isUndefined(null)).toBe(false)
     expect(isUndefined(undefined)).toBe(true)
+  })
+
+  it('isUndef', () => {
+    expect(isUndef({})).toBe(false)
+    expect(isUndef(null)).toBe(true)
+    expect(isUndef(undefined)).toBe(true)
+  })
+
+  it('isEmptyString', () => {
+    expect(isEmptyString({})).toBe(false)
+    expect(isEmptyString(null)).toBe(false)
+    expect(isEmptyString(undefined)).toBe(false)
+    expect(isEmptyString('')).toBe(true)
+    expect(isEmptyString('111')).toBe(false)
+  })
+
+  it('isEmpty', () => {
+    expect(isEmpty({})).toBe(false)
+    expect(isEmpty(null)).toBe(true)
+    expect(isEmpty(undefined)).toBe(true)
+    expect(isEmpty('')).toBe(true)
+    expect(isEmpty('111')).toBe(false)
   })
 })

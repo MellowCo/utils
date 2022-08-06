@@ -35,13 +35,19 @@ export const isUndefined = (val: unknown): val is undefined => toTypeString(val)
 export const isPlainObject = (val: unknown): val is object => toTypeString(val) === '[object Object]'
 
 export function isUndef(v: unknown) {
-  return v === undefined || v === null
+  return isNull(v) || isUndefined(v)
 }
 
 /**
  * 是否为空字符串
  */
-export function isEmptyString(str: string) {
-  return str.trim().length === 0
+export function isEmptyString(v: unknown) {
+  return isString(v) && v.trim().length === 0
 }
 
+/**
+ * 是否为空 undefined null ''
+ */
+export function isEmpty(v: unknown) {
+  return isUndef(v) || isEmptyString(v)
+}
