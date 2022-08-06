@@ -38,3 +38,10 @@ export const isPlainObject = (val: unknown): val is object =>
 export function isUndef(v: unknown) {
   return v === undefined || v === null
 }
+
+/**
+ * 是否为空字符串
+ */
+export function isEmptyString(str: string) {
+  return str.trim().length === 0
+}
