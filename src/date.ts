@@ -9,178 +9,150 @@ export enum dateFormatTag {
   toSecond = 'YYYY-MM-DD HH:mm:ss',
 }
 
-type DateTag = dateFormatTag | string
+type DateFormat = dateFormatTag | string
 
-interface YearParams {
-  /**
-   * 日期
-   */
-  date?: Date | string
-  /**
-   * 年
-   */
-  year?: number
-  /**
-   * 月
-   */
-  month?: number
-  /**
-   * 格式化
-   */
-  format?: DateTag
-  /**
-   * 转为Date
-   */
-  toDate?: boolean
-}
-
-interface FormatType {
-  dayjs: dayjs.Dayjs
-  format?: DateTag
-  toDate?: boolean
-}
+type IDate = Date | string
 
 /**
  * 格式化日期
- * @param params
- * @returns
+ * @param date - 日期 默认为当天
+ * @param format - 格式 默认为YYYY-MM-DD HH:mm
  */
-export function formatDate(params?: YearParams): string | Date {
-  const { date = new Date(), format = dateFormatTag.toSecond, toDate } = params || {}
-  return returnDate({
-    dayjs: dayjs(date),
-    format,
-    toDate,
-  })
-}
+export function formatDate(date?: IDate, format: DateFormat = dateFormatTag.toSecond): string {
+  if (!date)
+    date = new Date()
 
-export function returnDate(params: FormatType): string | Date {
-  const { dayjs, format, toDate } = params
-  return toDate ? dayjs.toDate() : dayjs.format(format)
+  return dayjs(date).format(format)
 }
 
 /**
  * 获取当前时间
- * @param {string} tag - 格式化标签
- * @returns
+ * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getNow(tag: DateTag = dateFormatTag.toDay): string {
-  return dayjs().format(tag)
+export function getNow(format: DateFormat = dateFormatTag.toDay): string {
+  return dayjs().format(format)
 }
 
 /**
  * 获取月第一天
- * @param {object} params
- * @param {string} params.date - 日期
- * @param {string} params.tag - 格式化标签
- * @param {string} params.year - 年
- * @param {string} params.month - 月
- * @returns {string}
+ * @param date - 日期 默认为当天
+ * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getFirstDayOfMonth(params?: YearParams): string {
-  const { date, year, month, format = dateFormatTag.toDay } = params || {}
+export function getFirstDayOfMonth(date?: IDate, format: DateFormat = dateFormatTag.toDay): string {
+  if (!date)
+    date = new Date()
 
-  if (date)
-    return dayjs(date).startOf('month').format(format)
-
-  if (month || year) {
-    let _dayjs = dayjs()
-    if (month)
-      _dayjs = _dayjs.month(month - 1)
-
-    if (year)
-      _dayjs = _dayjs.year(year)
-
-    return _dayjs.startOf('month').format(format)
-  }
-
-  return dayjs().startOf('month').format(format)
+  return dayjs(date).startOf('month').format(format)
 }
 
 /**
  * 获取月最后一天
- * @param {object} params
- * @param {string} params.date - 日期
- * @param {string} params.tag - 格式化标签
- * @param {string} params.year - 年
- * @param {string} params.month - 月
- * @returns {string}
+ * @param date - 日期 默认为当天
+ * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getLastDayOfMonth(params?: YearParams): string {
-  const { date, year, month, format = dateFormatTag.toDay } = params || {}
+export function getLastDayOfMonth(date?: IDate, format: DateFormat = dateFormatTag.toDay): string {
+  if (!date)
+    date = new Date()
 
-  if (date)
-    return dayjs(date).endOf('month').format(format)
-
-  if (month || year) {
-    let _dayjs = dayjs()
-    if (month)
-      _dayjs = _dayjs.month(month - 1)
-
-    if (year)
-      _dayjs = _dayjs.year(year)
-
-    return _dayjs.endOf('month').format(format)
-  }
-
-  return dayjs().endOf('month').format(format)
+  return dayjs(date).endOf('month').format(format)
 }
 
 /**
  * 获取整月
- * @param {object} params
- * @param {string} params.date - 日期
- * @param {string} params.tag - 格式化标签
- * @param {string} params.year - 年
- * @param {string} params.month - 月
- * @returns {string[]}
+ * @param date - 日期 默认为当天
+ * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getDaysOfMonth(params?: YearParams): string[] {
-  return [getFirstDayOfMonth(params), getLastDayOfMonth(params)]
+export function getDaysOfMonth(date?: IDate, format: DateFormat = dateFormatTag.toDay): string[] {
+  return [getFirstDayOfMonth(date, format), getLastDayOfMonth(date, format)]
 }
 
 /**
  * 获取上个月
- * @param tag - 格式化标签
+ * @param format - 格式 默认为YYYY-MM-DD
  */
 export function getDaysOfLastMonth(format = dateFormatTag.toDay): string[] {
-  const month = dayjs().month()
-  return [getFirstDayOfMonth({ format, month }), getLastDayOfMonth({ format, month })]
+  const month = dayjs().subtract(1, 'month').toDate()
+  return [getFirstDayOfMonth(month, format), getLastDayOfMonth(month, format)]
 }
 
 /**
  * 获取月第一天 到 现在
- * @param {object} params
- * @param {string} params.date - 日期
- * @param {string} params.tag - 格式化标签
- * @param {string} params.year - 年
- * @param {string} params.month - 月
- * @returns {string}
+ * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getDaysToNowOfMonth(params?: YearParams): string[] {
-  const { format } = params || {}
-  return [getFirstDayOfMonth(params), getNow(format)]
+export function getDaysToNowOfMonth(date?: IDate, format = dateFormatTag.toDay): string[] {
+  return [getFirstDayOfMonth(date, format), getNow(format)]
 }
 
 /**
  * 获取年第一天
- * @param {object} params
- * @param {string} params.year - 年
- * @param {string} params.tag - 格式化标签
+ * @param date - 日期 默认为当年
+ * @param format - 格式 默认为YYYY-MM-DD
  * @returns
  */
-export function getFirstDayOfYear(params?: { year?: number; tag?: DateTag }): string {
-  return getFirstDayOfMonth({ ...params, month: 1 })
+export function getFirstDayOfYear(date?: IDate, format = dateFormatTag.toDay): string {
+  if (!date)
+    date = new Date()
+
+  return dayjs(date).startOf('year').format(format)
 }
 
 /**
  * 本周
- * @param tag - 格式化标签
  */
-export function getDaysOfWeek(tag = dateFormatTag.toDay): string[] {
+export function getDaysOfWeek(format = dateFormatTag.toDay): string[] {
   return [
-    dayjs().startOf('week').format(tag),
-    dayjs().endOf('week').format(tag),
+    dayjs().startOf('week').format(format),
+    dayjs().endOf('week').format(format),
   ]
 }
 
+/**
+ * d1是否在d2之后
+ * @param d1 - 日期1
+ * @param d2 - 日期2 默认为当前时间
+ */
+export function isAfter(d1: IDate, d2: IDate = new Date()): boolean {
+  return dayjs(d1).isAfter(d2)
+}
+
+/**
+ * d1是否在d2之前
+ * @param d1 - 日期1
+ * @param d2 - 日期2 默认为当前时间
+ */
+export function isBefore(d1: IDate, d2: IDate = new Date()): boolean {
+  return dayjs(d1).isBefore(d2)
+}
+
+/**
+ * d3是否在d1与d2之间
+ * @param d1 - 日期1
+ * @param d2 - 日期2
+ * @param d3 - 日期3 默认为当前时间
+ * @returns
+ */
+export function isBetween(d1: IDate, d2: IDate, d3: IDate = new Date()): boolean {
+  return isAfter(d3, d1) && isBefore(d3, d2)
+}
+
+/**
+ * 加几天
+ * @param days - 天数 默认为1
+ * @param d - 日期 默认为当天
+ * @param format - 格式 默认为YYYY-MM-DD
+ * @returns
+ */
+export function addDays(days = 1, d: IDate = new Date(), format = dateFormatTag.toDay): IDate {
+  return dayjs(d).add(days, 'day').format(format)
+}
+
+/**
+ * 减几天
+ * @param days - 天数 默认为1
+ * @param d - 日期 默认为当天
+ * @param format - 格式 默认为YYYY-MM-DD
+ * @returns
+ */
+export function subDays(days = 1, d: IDate = new Date(), format = dateFormatTag.toDay): IDate {
+  return dayjs(d).subtract(days, 'day').format(format)
+}
