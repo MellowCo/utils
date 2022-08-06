@@ -29,6 +29,8 @@ export const isUndefined = (val: unknown): val is undefined => toTypeString(val)
 
 export const isRegExp = (val: unknown): val is RegExp => toTypeString(val) === '[object RegExp]'
 
+export const isFile = (val: unknown): val is File => toTypeString(val) === '[object File]'
+
 /**
  * 是否为纯粹的对象
  * isObject([]) 是 true ，因为 type [] 为 'object'
