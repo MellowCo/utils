@@ -78,3 +78,43 @@ export const params2Url = (obj: Object) => {
 
   return encodeURIComponent(params.join('&'))
 }
+
+/**
+ * 将总秒数转换成 时:分:秒
+ * @param seconds - 秒
+ */
+export const seconds2Time = (seconds: number) => {
+  const hour = Math.floor(seconds / 3600)
+  const minute = Math.floor((seconds - hour * 3600) / 60)
+  const second = seconds - hour * 3600 - minute * 60
+  return `${fillZero(hour)}:${fillZero(minute)}:${fillZero(second)}`
+}
+
+/**
+ * 将总秒数转换成 日:时:分:秒
+ * @param seconds - 秒
+ */
+export const seconds2DayTime = (seconds: number) => {
+  const day = Math.floor(seconds / 86400)
+  const hour = Math.floor((seconds - day * 86400) / 3600)
+  const minute = Math.floor((seconds - day * 86400 - hour * 3600) / 60)
+  const second = seconds - day * 86400 - hour * 3600 - minute * 60
+  return `${fillZero(day)}:${fillZero(hour)}:${fillZero(minute)}:${fillZero(second)}`
+}
+
+/**
+ * 填充0
+ * @param num - 数字
+ */
+function fillZero(num: number) {
+  /**
+   * ES6 字符串补全
+   * padStart：返回新的字符串，表示用参数字符串从头部（左侧）补全原字符串。
+   * padEnd：返回新的字符串，表示用参数字符串从尾部（右侧）补全原字符串。
+   * 以上两个方法接受两个参数，
+   * 第一个参数是指定生成的字符串的最小长度，
+   * 第二个参数是用来补全的字符串。如果没有指定第二个参数，默认用空格填充。
+   * @link https://www.runoob.com/w3cnote/es6-string.html
+   */
+  return num.toString().padStart(2, '0')
+}
