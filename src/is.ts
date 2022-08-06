@@ -27,6 +27,8 @@ export const isPromise = <T = any>(val: unknown): val is Promise<T> => {
 
 export const isNumber = (val: any): val is number => typeof val === 'number'
 
+export const isNull = (val: unknown): val is null => toTypeString(val) === '[object Null]'
+
 /**
  * 是否为纯粹的对象
  * isObject([]) 是 true ，因为 type [] 为 'object'
@@ -45,3 +47,4 @@ export function isUndef(v: unknown) {
 export function isEmptyString(str: string) {
   return str.trim().length === 0
 }
+
