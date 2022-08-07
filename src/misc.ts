@@ -118,3 +118,43 @@ function fillZero(num: number) {
    */
   return num.toString().padStart(2, '0')
 }
+
+/**
+ * 下载文件
+ * @param link - 文件链接
+ * @param name - 文件名
+ * @example downloadFile('http://www.baidu.com/img/bd_logo1.png', 'logo.png')
+ */
+export function download(link: string, name?: string) {
+  if (!name)
+    name = link.slice(link.lastIndexOf('/') + 1)
+
+  const eleLink = document.createElement('a')
+  eleLink.download = name
+  eleLink.style.display = 'none'
+  eleLink.href = link
+  document.body.appendChild(eleLink)
+  eleLink.click()
+  document.body.removeChild(eleLink)
+}
+
+/**
+ * 浏览器下载静态文件
+ * @param name - 文件名
+ * @param content - 文件内容 blob
+ * @example downloadFile('1.json',JSON.stringify({name:'hahahha'}))
+ * @example downloadFile('1.json',new Blob([ data ]))
+ */
+export function downloadFile(name: string, content: any) {
+  if (typeof name == 'undefined')
+    throw new Error('The first parameter name is a must')
+
+  if (typeof content == 'undefined')
+    throw new Error('The second parameter content is a must')
+
+  if (!(content instanceof Blob))
+    content = new Blob([content])
+
+  const link = URL.createObjectURL(content)
+  download(link, name)
+}
