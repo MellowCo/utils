@@ -1,13 +1,13 @@
 /*
  * @Author: licl
  * @Date: 2022-07-20 11:39:40
- * @LastEditTime: 2022-08-06 22:02:52
+ * @LastEditTime: 2022-08-09 08:38:05
  * @LastEditors: licl
  * @Description:
  */
 
 import { describe, expect, it } from 'vitest'
-import { addDays, dateFormatTag, formatDate, getDaysOfLastMonth, getDaysOfMonth, getDaysOfWeek, getDaysToNowOfMonth, getFirstDayOfMonth, getFirstDayOfYear, isAfter, isBefore, isBetween, subDays } from '../src'
+import { FormatType, addDays, formatDate, getDaysOfLastMonth, getDaysOfMonth, getDaysOfWeek, getDaysToNowOfMonth, getFirstDayOfMonth, getFirstDayOfYear, isAfter, isBefore, isBetween, subDays } from '../src'
 
 describe('date', () => {
   it('formatDate', () => {
@@ -15,13 +15,13 @@ describe('date', () => {
 
     expect(formatDate('2022')).toMatchInlineSnapshot('"2022-01-01 00:00:00"')
     expect(formatDate('2022-03')).toMatchInlineSnapshot('"2022-03-01 00:00:00"')
-    expect(formatDate('', dateFormatTag.toDay)).toMatchInlineSnapshot('"2022-08-06"')
-    expect(formatDate(now, dateFormatTag.toDay)).toMatchInlineSnapshot('"2022-08-06"')
+    expect(formatDate('', FormatType.toDay)).toMatchInlineSnapshot('"2022-08-09"')
+    expect(formatDate(now, FormatType.toDay)).toMatchInlineSnapshot('"2022-08-09"')
   })
 
   it('getFirstDayOfMonth', () => {
     expect(getFirstDayOfMonth()).toMatchInlineSnapshot('"2022-08-01"')
-    expect(getFirstDayOfMonth('', dateFormatTag.toSecond)).toMatchInlineSnapshot('"2022-08-01 00:00:00"')
+    expect(getFirstDayOfMonth('', FormatType.toSecond)).toMatchInlineSnapshot('"2022-08-01 00:00:00"')
     expect(getFirstDayOfMonth('2020/03/23')).toBe('2020-03-01')
     expect(getFirstDayOfMonth('2021')).toMatchInlineSnapshot('"2021-01-01"')
     expect(getFirstDayOfMonth('202207')).toMatchInlineSnapshot('"2022-07-01"')
@@ -34,7 +34,7 @@ describe('date', () => {
         "2022-08-31",
       ]
     `)
-    expect(getDaysOfMonth('', dateFormatTag.toSecond)).toMatchInlineSnapshot(`
+    expect(getDaysOfMonth('', FormatType.toSecond)).toMatchInlineSnapshot(`
       [
         "2022-08-01 00:00:00",
         "2022-08-31 23:59:59",
@@ -62,7 +62,7 @@ describe('date', () => {
 
   it('getFirstDayOfYear', () => {
     expect(getFirstDayOfYear('2023')).toMatchInlineSnapshot('"2023-01-01"')
-    expect(getFirstDayOfYear('', dateFormatTag.toSecond)).toMatchInlineSnapshot('"2022-01-01 00:00:00"')
+    expect(getFirstDayOfYear('', FormatType.toSecond)).toMatchInlineSnapshot('"2022-01-01 00:00:00"')
   })
 
   it('getDaysOfLastMonth', () => {
@@ -77,8 +77,8 @@ describe('date', () => {
   it('getDaysOfWeek', () => {
     expect(getDaysOfWeek()).toMatchInlineSnapshot(`
       [
-        "2022-07-31",
-        "2022-08-06",
+        "2022-08-07",
+        "2022-08-13",
       ]
     `)
   })
@@ -87,25 +87,25 @@ describe('date', () => {
     expect(getDaysToNowOfMonth()).toMatchInlineSnapshot(`
       [
         "2022-08-01",
-        "2022-08-06",
+        "2022-08-09",
       ]
     `)
-    expect(getDaysToNowOfMonth('', dateFormatTag.toHour)).toMatchInlineSnapshot(`
+    expect(getDaysToNowOfMonth('', FormatType.toMonth)).toMatchInlineSnapshot(`
       [
-        "2022-08-01 00",
-        "2022-08-06 22",
+        "2022-08",
+        "2022-08",
       ]
     `)
     expect(getDaysToNowOfMonth('2014')).toMatchInlineSnapshot(`
       [
         "2014-01-01",
-        "2022-08-06",
+        "2022-08-09",
       ]
     `)
   })
 
   it('isAfter', () => {
-    expect(isAfter('20220807')).toMatchInlineSnapshot('true')
+    expect(isAfter('20220807')).toMatchInlineSnapshot('false')
     expect(isAfter('20220807', '20210801')).toMatchInlineSnapshot('true')
     expect(isAfter(new Date(), '20210801')).toMatchInlineSnapshot('true')
   })
@@ -123,14 +123,14 @@ describe('date', () => {
   })
 
   it('addDays', () => {
-    expect(addDays(1)).toMatchInlineSnapshot('"2022-08-07"')
+    expect(addDays(1)).toMatchInlineSnapshot('"2022-08-10"')
     expect(addDays(2, '20220710')).toMatchInlineSnapshot('"2022-07-12"')
-    expect(addDays(10, '20220825', dateFormatTag.toSecond)).toMatchInlineSnapshot('"2022-09-04 00:00:00"')
+    expect(addDays(10, '20220825', FormatType.toSecond)).toMatchInlineSnapshot('"2022-09-04 00:00:00"')
   })
 
   it('subDays', () => {
-    expect(subDays(1)).toMatchInlineSnapshot('"2022-08-05"')
+    expect(subDays(1)).toMatchInlineSnapshot('"2022-08-08"')
     expect(subDays(2, '20220710')).toMatchInlineSnapshot('"2022-07-08"')
-    expect(subDays(10, '20220902', dateFormatTag.toSecond)).toMatchInlineSnapshot('"2022-08-23 00:00:00"')
+    expect(subDays(10, '20220902', FormatType.toSecond)).toMatchInlineSnapshot('"2022-08-23 00:00:00"')
   })
 })
