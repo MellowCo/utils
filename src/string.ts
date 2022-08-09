@@ -27,9 +27,9 @@ export const hyphenate = (str: string) =>
 
 /**
  * 替换所有相同字符串
- * @param  text - 需要处理的字符串
- * @param  repstr - 被替换的字符
- * @param  newstr - 替换后的字符
+ * @param text - 需要处理的字符串
+ * @param repstr - 被替换的字符
+ * @param newstr - 替换后的字符
  */
 export function replaceAll(text: string, repstr: string, newstr: string) {
   return text.replace(new RegExp(repstr, 'gm'), newstr)
@@ -37,7 +37,7 @@ export function replaceAll(text: string, repstr: string, newstr: string) {
 
 /**
  * @desc 去左右空格
- * @param  value - 需要处理的字符串
+ * @param value - 需要处理的字符串
  */
 export function trim(value: string) {
   return value.replace(/(^\s*)|(\s*$)/g, '')
@@ -59,3 +59,14 @@ export function getHanByNumber(num: number) {
   const HAN_STR = '零一二三四五六七八九十'
   return HAN_STR.charAt(num)
 }
+
+/**
+ * 插入字符串
+ * @param str - 原字符串
+ * @param start - 插入位置
+ * @param insertStr - 插入字符串
+ */
+export function insertStr(str: string, start: number, insertStr: string): string {
+  return str.slice(0, start) + insertStr + str.slice(start)
+}
+
