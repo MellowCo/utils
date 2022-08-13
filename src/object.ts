@@ -50,8 +50,7 @@ export const objectToString = Object.prototype.toString
  * 对象类型
  * @param value - 对象
  */
-export const toTypeString = (value: unknown): string =>
-  objectToString.call(value)
+export const toTypeString = (value: unknown): string => objectToString.call(value)
 
 /**
  * 比较一个值是否改变
@@ -59,5 +58,5 @@ export const toTypeString = (value: unknown): string =>
  * @param oldValue - 对象
  *
  */
-export const hasChanged = (value: any, oldValue: any): boolean =>
-  !Object.is(value, oldValue)
+export const hasChanged = (value: any, oldValue: any): boolean => !Object.is(value, oldValue)
+
