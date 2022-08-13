@@ -1,4 +1,19 @@
-import { AES, MD5, enc, mode, pad } from 'crypto-js'
+import AES from 'crypto-js/aes'
+import MD5 from 'crypto-js/md5'
+import encUtf8 from 'crypto-js/enc-utf8'
+import encHex from 'crypto-js/enc-hex'
+
+import CFB from 'crypto-js/mode-cfb'
+import CTR from 'crypto-js/mode-ctr'
+import CTRGladman from 'crypto-js/mode-ctr-gladman'
+import OFB from 'crypto-js/mode-ofb'
+
+import AnsiX923 from 'crypto-js/pad-ansix923'
+import Iso10126 from 'crypto-js/pad-iso10126'
+import Iso97971 from 'crypto-js/pad-iso97971'
+import ZeroPadding from 'crypto-js/pad-zeropadding'
+import NoPadding from 'crypto-js/pad-nopadding'
+import Pkcs7 from 'crypto-js/pad-pkcs7'
 
 /**
  * aes加密
@@ -29,7 +44,7 @@ export function decrypt(encryptStr: string, encryptKey: string): string {
     iv,
     mode,
     padding,
-  }).toString(enc.Utf8)
+  }).toString(encUtf8)
 }
 
 /**
@@ -38,11 +53,11 @@ export function decrypt(encryptStr: string, encryptKey: string): string {
  * @returns {{iv,key,mode,padding}} - 加密配置
  */
 function createEncryptConfig(encryptKey: string): { key: any; iv: any; mode: any; padding: any } {
-  const padArr = [pad.AnsiX923, pad.Iso10126, pad.Iso97971, pad.ZeroPadding, pad.NoPadding, pad.Pkcs7]
-  const modeArr = [mode.CBC, mode.CFB, mode.CTR, mode.CTRGladman, mode.CFB, mode.OFB]
+  const padArr = [AnsiX923, Iso10126, Iso97971, ZeroPadding, NoPadding, Pkcs7]
+  const modeArr = [CTRGladman, CFB, CTR, CTRGladman, CFB, OFB]
 
   const md5Str = MD5(encryptKey).toString()
-  const iv = enc.Hex.parse(encryptKey)
+  const iv = encHex.parse(encryptKey)
   const md5Total = Array.from(md5Str.matchAll(/\d/g)).reduce((total, currentValue) => {
     return +currentValue[0] + total
   }, 10)
