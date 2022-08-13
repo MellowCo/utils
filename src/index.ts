@@ -1,5 +1,3 @@
-export * from './encrypt'
-export * from './storage'
 export * from './array'
 export * from './object'
 export * from './promise'
