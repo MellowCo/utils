@@ -10,10 +10,24 @@ export const remove = <T>(arr: T[], el: T) => {
 }
 
 /**
+ * 将值插入到指定索引之后
+ * @param arr - 数组
+ * @param index - 索引
+ * @param v - 值
+ * @example
+ * let otherArray = [2, 10];
+ * insertAt(otherArray, 0, 4, 6, 8); // otherArray = [2, 4, 6, 8, 10]
+ */
+export const insertAt = <T>(arr: T[], index: number, ...v: T[]) => {
+  arr.splice(index + 1, 0, ...v)
+  return arr
+}
+
+/**
  * 布尔全等判断
  * @param arr - 数组
  * @param fn - 判断函数
- * @returns all([4, 2, 3], x => x > 1) => true
+ * @example all([4, 2, 3], x => x > 1) => true
  */
 export function all(arr: unknown[], fn = Boolean) {
   return arr.every(fn)
@@ -22,8 +36,8 @@ export function all(arr: unknown[], fn = Boolean) {
 /**
  * 检查数组各项相等
  * @param arr - 数组
- * @returns allEqual([4, 2, 3]) => false
- * @returns allEqual([4, 4, 4]) => true
+ * @example allEqual([4, 2, 3]) => false
+ * @example allEqual([4, 4, 4]) => true
  */
 export function allEqual(arr: unknown[]) {
   return arr.every(val => val === arr[0])
