@@ -2,7 +2,7 @@ const camelizeRE = /-(\w)/g
 /**
  * 驼峰化
  * @param str - 字符串
- * @returns user-info => userInfo
+ * @example user-info => userInfo
  */
 export const camelize = (str: string): string => {
   return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
@@ -11,7 +11,7 @@ export const camelize = (str: string): string => {
 /**
  * 首字母大写
  * @param str - 字符串
- * @returns userInfo => UserInfo
+ * @example userInfo => UserInfo
  */
 export const capitalize
   = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
@@ -20,7 +20,7 @@ const hyphenateRE = /\B([A-Z])/g
 /**
  * 大写字母 转为 小写-连接
  * @param str - 字符串
- * @returns UserInfo => user-info
+ * @example UserInfo => user-info
  */
 export const hyphenate = (str: string) =>
   str.replace(hyphenateRE, '-$1').toLowerCase()
@@ -70,3 +70,21 @@ export function insertStr(str: string, start: number, insertStr: string): string
   return str.slice(0, start) + insertStr + str.slice(start)
 }
 
+/**
+ * 转义HTML字符
+ * @param str - 字符串
+ * @example '<a href="#">Me & you</a>' => '&lt;a href="#"&gt;Me &amp; you&lt;/a&gt;'
+ */
+export function escapeHTML(str: string) {
+  return str.replace(
+    /[&<>'"]/g,
+    tag =>
+      ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '\'': '&#39;',
+        '"': '&quot;',
+      }[tag] || tag),
+  )
+}
