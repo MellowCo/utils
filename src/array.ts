@@ -24,6 +24,17 @@ export const insertAt = <T>(arr: T[], index: number, ...v: T[]) => {
 }
 
 /**
+ * 返回数组中的最后一个元素
+ * @param arr - 数组
+ * @example
+ * last([1, 2, 3]); // 3
+ * last([]); // undefined
+ * last(null); // undefined
+ * last(undefined); // undefined
+ */
+export const last = <T>(arr: T[]) => (arr && arr.length ? arr[arr.length - 1] : undefined)
+
+/**
  * 布尔全等判断
  * @param arr - 数组
  * @param fn - 判断函数
