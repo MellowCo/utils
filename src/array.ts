@@ -35,6 +35,14 @@ export const insertAt = <T>(arr: T[], index: number, ...v: T[]) => {
 export const last = <T>(arr: T[]) => (arr && arr.length ? arr[arr.length - 1] : undefined)
 
 /**
+ * 返回数组中的最后 n 个元素
+ * @param arr - 数组
+ * @param n - 索引
+ * @example lastN(['a', 'b', 'c', 'd'], 2); // ['c', 'd']
+ */
+export const lastN = <T>(arr: T[], n: number) => arr.slice(-n)
+
+/**
  * 布尔全等判断
  * @param arr - 数组
  * @param fn - 判断函数
