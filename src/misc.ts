@@ -59,14 +59,6 @@ export function hideMobile(mobile: string) {
 }
 
 /**
- * 随机布尔值
- * @returns true or false
- */
-export function randomBoolean() {
-  return Math.random() >= 0.5
-}
-
-/**
  * 键值对拼接成URL参数
  * @param obj - 键值对
  * @returns a=1&b=2

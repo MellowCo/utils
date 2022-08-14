@@ -1,26 +1,4 @@
-import { isString, randomIntegerInRange } from '.'
-
-/**
- * 随机十六进制颜色
- * @returns #e34155
- */
-export function randomHexColorCode() {
-  const n = (Math.random() * 0xFFFFF * 1000000).toString(16)
-  return `#${n.slice(0, 6)}`
-}
-
-/**
- * 随机 rgb 颜色
- * @param min - 最小值
- * @param max - 最大值
- * @returns
- */
-export function randomRgbColor(min = 0, max = 255) {
-  const r = randomIntegerInRange(min, max)
-  const g = randomIntegerInRange(min, max)
-  const b = randomIntegerInRange(min, max)
-  return `rgb(${r},${g},${b})`
-}
+import { isString } from '.'
 
 /**
  * rgb转hex
