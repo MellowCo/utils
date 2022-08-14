@@ -9,6 +9,21 @@ export const camelize = (str: string): string => {
 }
 
 /**
+ * 将字符串转换为 pascal 大小写
+ * @param str - 字符串
+ * @example
+ * user-info => UserInfo
+ * some_database_field_name => SomeDatabaseFieldName
+ * Some label that needs to be pascalized => SomeLabelThatNeedsToBePascalized
+ * some-mixed_string with spaces_underscores-and-hyphens => SomeMixedStringWithSpacesUnderscoresAndHyphens
+ */
+export const toPascalCase = (str: string): string => {
+  return str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
+    .map(x => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())
+    .join('')
+}
+
+/**
  * 首字母大写
  * @param str - 字符串
  * @example userInfo => UserInfo
