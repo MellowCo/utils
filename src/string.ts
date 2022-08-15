@@ -9,7 +9,7 @@ export const camelize = (str: string): string => {
 }
 
 /**
- * 将字符串转换为 pascal 大小写
+ * 将字符串转换为 pascal 
  * @param str - 字符串
  * @example
  * user-info => UserInfo
@@ -24,7 +24,7 @@ export const toPascalCase = (str: string): string => {
 }
 
 /**
- * 将字符串转换为 camel 大小写  
+ * 将字符串转换为 camel 
  * @param str 
  * @example hello-world => helloWorld
  * @example hello_world => helloWorld
@@ -43,7 +43,7 @@ export const toCamelCase = (str:string) => {
 }
 
 /**
- * 将字符串转换为 kebab 大小写
+ * 将字符串转换为 kebab 
  * @param str 
  * @example helloWorld => hello-world
  * @example hello_world => hello-world
@@ -55,6 +55,20 @@ export const toKebabCase = (str:string) =>
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
     .map(x => x.toLowerCase())
     .join('-');
+
+/**
+ * 将字符串转换为 snake 
+ * @param str 
+ * @example helloWorld => hello_world
+ * @example hello_world => hello_world
+ * @example hello world => hello_world 
+ */
+export  const toSnakeCase = (str:string) =>
+  str &&
+  str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
+    .map(x => x.toLowerCase())
+    .join('_');
 
 /**
  * 字符数组
