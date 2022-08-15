@@ -24,6 +24,25 @@ export const toPascalCase = (str: string): string => {
 }
 
 /**
+ * 将字符串转换为 camel 大小写  
+ * @param str 
+ * @example hello-world => helloWorld
+ * @example hello_world => helloWorld
+ * @example hello world => helloWorld
+ */
+export const toCamelCase = (str:string) => {
+  const s =
+    str &&
+    str
+      .match(
+        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+      )!
+      .map(x => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
+      .join('');
+  return s.slice(0, 1).toLowerCase() + s.slice(1);
+};
+
+/**
  * 首字母大写
  * @param str - 字符串
  * @example userInfo => UserInfo
