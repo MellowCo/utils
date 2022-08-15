@@ -103,3 +103,10 @@ export function escapeHTML(str: string) {
       }[tag] || tag),
   )
 }
+
+/**
+ * 移除空格
+ * @param str - 字符串
+ * @example '  Hello  \nWorld  ' => 'Hello World' 
+ */
+export const removeWhitespace = (str:string) => str.replace(/\s+/g, '')
