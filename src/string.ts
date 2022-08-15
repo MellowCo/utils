@@ -43,6 +43,20 @@ export const toCamelCase = (str:string) => {
 }
 
 /**
+ * 将字符串转换为 kebab 大小写
+ * @param str 
+ * @example helloWorld => hello-world
+ * @example hello_world => hello-world
+ * @example hello world => hello-world
+ */
+export const toKebabCase = (str:string) =>
+  str &&
+  str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
+    .map(x => x.toLowerCase())
+    .join('-');
+
+/**
  * 字符数组
  * @param s 
  * @example hello => ['h', 'e', 'l', 'l', 'o'] 
