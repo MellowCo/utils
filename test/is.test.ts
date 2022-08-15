@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-07-31 21:17:18
- * @LastEditTime: 2022-08-06 20:31:04
+ * @LastEditTime: 2022-08-15 22:05:49
  * @LastEditors: licl
  * @Description:
  */
@@ -50,11 +50,16 @@ describe('object', () => {
   })
 
   it('isEmpty', () => {
-    expect(isEmpty({})).toBe(false)
+    expect(isEmpty({})).toBe(true)
+    expect(isEmpty([])).toBe(true)
     expect(isEmpty(null)).toBe(true)
     expect(isEmpty(undefined)).toBe(true)
     expect(isEmpty('')).toBe(true)
+    expect(isEmpty(' ')).toBe(false)
     expect(isEmpty('111')).toBe(false)
+    expect(isEmpty(0)).toBe(true)
+    expect(isEmpty(111)).toBe(true)
+    expect(isEmpty(true)).toBe(true)
   })
 
   it('isRegExp', () => {
