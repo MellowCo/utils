@@ -40,7 +40,15 @@ export const toCamelCase = (str:string) => {
       .map(x => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
       .join('');
   return s.slice(0, 1).toLowerCase() + s.slice(1);
-};
+}
+
+/**
+ * 字符数组
+ * @param s 
+ * @example hello => ['h', 'e', 'l', 'l', 'o'] 
+ */
+export const toCharArray = (s:string) => [...s]
+
 
 /**
  * 首字母大写
