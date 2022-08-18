@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-07-20 11:39:40
- * @LastEditTime: 2022-08-18 21:49:18
+ * @LastEditTime: 2022-08-18 21:58:37
  * @LastEditors: licl
  * @Description:
  */
@@ -123,14 +123,14 @@ describe('date', () => {
   })
 
   it('addDays', () => {
-    expect(addDays(1)).toMatchInlineSnapshot('"2022-07-12"')
-    expect(addDays(2, '20220710')).toMatchInlineSnapshot('"2022-09-04 00:00:00"')
-    expect(addDays(10, '20220825', FormatType.toSecond)).toMatchInlineSnapshot('"2022-08-17"')
+    expect(addDays(1)).toBe('2022-08-19')
+    expect(addDays(2, '20220710')).toBe('2022-07-12')
+    expect(addDays(10, '20220825', FormatType.toSecond)).toBe('2022-09-04 00:00:00')
   })
 
   it('subDays', () => {
-    expect(subDays(1)).toMatchInlineSnapshot('"2022-07-08"')
-    expect(subDays(2, '20220710')).toMatchInlineSnapshot('"2022-08-23 00:00:00"')
-    expect(subDays(10, '20220902', FormatType.toSecond)).toMatchInlineSnapshot('2022-07-09T16:00:00.000Z')
+    expect(subDays(1)).toBe('2022-08-17')
+    expect(subDays(2, '20220710')).toBe('2022-07-08')
+    expect(subDays(10, '20220902', FormatType.toSecond)).toBe('2022-08-23 00:00:00')
   })
 })
