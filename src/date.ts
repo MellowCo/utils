@@ -107,21 +107,21 @@ export function getDaysOfWeek(format = FormatType.toDay): string[] {
 }
 
 /**
- * d1是否在d2之后
+ * d2是否在d1之后
  * @param d1 - 日期1
  * @param d2 - 日期2 默认为当前时间
  */
 export function isAfter(d1: IDate, d2: IDate = new Date()): boolean {
-  return dayjs(d1).isAfter(d2)
+  return dayjs(d2).isAfter(d1)
 }
 
 /**
- * d1是否在d2之前
+ * d2是否在d1之前
  * @param d1 - 日期1
  * @param d2 - 日期2 默认为当前时间
  */
 export function isBefore(d1: IDate, d2: IDate = new Date()): boolean {
-  return dayjs(d1).isBefore(d2)
+  return dayjs(d2).isBefore(d1)
 }
 
 /**
@@ -132,7 +132,7 @@ export function isBefore(d1: IDate, d2: IDate = new Date()): boolean {
  * @returns
  */
 export function isBetween(d1: IDate, d2: IDate, d3: IDate = new Date()): boolean {
-  return isAfter(d3, d1) && isBefore(d3, d2)
+  return isAfter(d1, d3) && isBefore(d2, d3)
 }
 
 /**
@@ -156,3 +156,14 @@ export function addDays(days = 1, d: IDate = new Date(), format = FormatType.toD
 export function subDays(days = 1, d: IDate = new Date(), format = FormatType.toDay): IDate {
   return dayjs(d).subtract(days, 'day').format(format)
 }
+
+/**
+ * 转换成 Date
+ */
+export function toDate(date: string | string[]) {
+  if (typeof date === 'string')
+    return dayjs(date).toDate()
+
+  return date.map(item => dayjs(item).toDate())
+}
+

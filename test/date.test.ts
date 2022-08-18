@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-07-20 11:39:40
- * @LastEditTime: 2022-08-09 08:38:05
+ * @LastEditTime: 2022-08-18 21:49:18
  * @LastEditors: licl
  * @Description:
  */
@@ -15,8 +15,8 @@ describe('date', () => {
 
     expect(formatDate('2022')).toMatchInlineSnapshot('"2022-01-01 00:00:00"')
     expect(formatDate('2022-03')).toMatchInlineSnapshot('"2022-03-01 00:00:00"')
-    expect(formatDate('', FormatType.toDay)).toMatchInlineSnapshot('"2022-08-15"')
-    expect(formatDate(now, FormatType.toDay)).toMatchInlineSnapshot('"2022-08-15"')
+    expect(formatDate('', FormatType.toDay)).toMatchInlineSnapshot('"2022-08-18"')
+    expect(formatDate(now, FormatType.toDay)).toMatchInlineSnapshot('"2022-08-18"')
   })
 
   it('getFirstDayOfMonth', () => {
@@ -87,7 +87,7 @@ describe('date', () => {
     expect(getDaysToNowOfMonth()).toMatchInlineSnapshot(`
       [
         "2022-08-01",
-        "2022-08-15",
+        "2022-08-18",
       ]
     `)
     expect(getDaysToNowOfMonth('', FormatType.toMonth)).toMatchInlineSnapshot(`
@@ -99,38 +99,38 @@ describe('date', () => {
     expect(getDaysToNowOfMonth('2014')).toMatchInlineSnapshot(`
       [
         "2014-01-01",
-        "2022-08-15",
+        "2022-08-18",
       ]
     `)
   })
 
   it('isAfter', () => {
-    expect(isAfter('20220807')).toMatchInlineSnapshot('false')
-    expect(isAfter('20220807', '20210801')).toMatchInlineSnapshot('true')
-    expect(isAfter(new Date(), '20210801')).toMatchInlineSnapshot('true')
+    expect(isAfter('20220807')).toBe(true)
+    expect(isAfter('20220807', '20210801')).toBe(false)
+    expect(isAfter(new Date(), '20221201')).toBe(true)
   })
 
   it('isBefore', () => {
-    expect(isBefore('20220805')).toMatchInlineSnapshot('true')
-    expect(isBefore('20220807', '20210801')).toMatchInlineSnapshot('false')
-    expect(isBefore(new Date(), '20210801')).toMatchInlineSnapshot('false')
+    expect(isBefore('20220805')).toBe(false)
+    expect(isBefore('20220807', '20210801')).toBe(true)
+    expect(isBefore(new Date(), '20221201')).toBe(false)
   })
 
   it('isBetween', () => {
-    expect(isBetween('20220801', '20221205')).toMatchInlineSnapshot('false')
-    expect(isBetween('20220101', '20220501')).toMatchInlineSnapshot('true')
-    expect(isBetween('20220101', '20220501', '20220302')).toMatchInlineSnapshot('"2022-08-16"')
+    expect(isBetween('20220801', '20221205')).toBe(true)
+    expect(isBetween('20220101', '20220501')).toBe(false)
+    expect(isBetween('20220101', '20220501', '20220302')).toBe(true)
   })
 
   it('addDays', () => {
     expect(addDays(1)).toMatchInlineSnapshot('"2022-07-12"')
     expect(addDays(2, '20220710')).toMatchInlineSnapshot('"2022-09-04 00:00:00"')
-    expect(addDays(10, '20220825', FormatType.toSecond)).toMatchInlineSnapshot('"2022-08-14"')
+    expect(addDays(10, '20220825', FormatType.toSecond)).toMatchInlineSnapshot('"2022-08-17"')
   })
 
   it('subDays', () => {
-    expect(subDays(1)).toMatchInlineSnapshot('"2022-08-13"')
-    expect(subDays(2, '20220710')).toMatchInlineSnapshot('"2022-07-08"')
-    expect(subDays(10, '20220902', FormatType.toSecond)).toMatchInlineSnapshot('"2022-08-23 00:00:00"')
+    expect(subDays(1)).toMatchInlineSnapshot('"2022-07-08"')
+    expect(subDays(2, '20220710')).toMatchInlineSnapshot('"2022-08-23 00:00:00"')
+    expect(subDays(10, '20220902', FormatType.toSecond)).toMatchInlineSnapshot('2022-07-09T16:00:00.000Z')
   })
 })
