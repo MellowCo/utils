@@ -57,6 +57,7 @@ export function isEmptyString(v: unknown) {
  * @example isEmpty([]) // true
  * @example isEmpty({}) // true
  * @example isEmpty(' ') // false
+ * @example isEmpty(123) // true
  */
 export function isEmpty(val: any) {
   return val == null || !(Object.keys(val) || val).length
