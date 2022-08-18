@@ -9,7 +9,7 @@ export const camelize = (str: string): string => {
 }
 
 /**
- * 将字符串转换为 pascal 
+ * 将字符串转换为 pascal
  * @param str - 字符串
  * @example
  * user-info => UserInfo
@@ -24,59 +24,58 @@ export const toPascalCase = (str: string): string => {
 }
 
 /**
- * 将字符串转换为 camel 
- * @param str 
+ * 将字符串转换为 camel
+ * @param str
  * @example hello-world => helloWorld
  * @example hello_world => helloWorld
  * @example hello world => helloWorld
  */
-export const toCamelCase = (str:string) => {
-  const s =
-    str &&
-    str
+export const toCamelCase = (str: string) => {
+  const s
+    = str
+    && str
       .match(
-        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g,
       )!
       .map(x => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
-      .join('');
-  return s.slice(0, 1).toLowerCase() + s.slice(1);
+      .join('')
+  return s.slice(0, 1).toLowerCase() + s.slice(1)
 }
 
 /**
- * 将字符串转换为 kebab 
- * @param str 
+ * 将字符串转换为 kebab
+ * @param str
  * @example helloWorld => hello-world
  * @example hello_world => hello-world
  * @example hello world => hello-world
  */
-export const toKebabCase = (str:string) =>
-  str &&
+export const toKebabCase = (str: string) =>
   str
+  && str
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
     .map(x => x.toLowerCase())
-    .join('-');
+    .join('-')
 
 /**
- * 将字符串转换为 snake 
- * @param str 
+ * 将字符串转换为 snake
+ * @param str
  * @example helloWorld => hello_world
  * @example hello_world => hello_world
- * @example hello world => hello_world 
+ * @example hello world => hello_world
  */
-export  const toSnakeCase = (str:string) =>
-  str &&
+export const toSnakeCase = (str: string) =>
   str
+  && str
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
     .map(x => x.toLowerCase())
-    .join('_');
+    .join('_')
 
 /**
  * 字符数组
- * @param s 
- * @example hello => ['h', 'e', 'l', 'l', 'o'] 
+ * @param s
+ * @example hello => ['h', 'e', 'l', 'l', 'o']
  */
-export const toCharArray = (s:string) => [...s]
-
+export const toCharArray = (s: string) => [...s]
 
 /**
  * 首字母大写
@@ -162,6 +161,6 @@ export function escapeHTML(str: string) {
 /**
  * 移除空格
  * @param str - 字符串
- * @example '  Hello  \nWorld  ' => 'Hello World' 
+ * @example '  Hello  \nWorld  ' => 'Hello World'
  */
-export const removeWhitespace = (str:string) => str.replace(/\s+/g, '')
+export const removeWhitespace = (str: string) => str.replace(/\s+/g, '')

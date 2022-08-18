@@ -44,7 +44,7 @@
     "build": "unbuild",
     "dev": "unbuild --stub",
     "lint": "eslint .",
-    "prepublishOnly": "nr build",
+    "prepublishOnly": "npm run build",
     "release": "bumpp && npm publish",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
