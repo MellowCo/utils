@@ -50,8 +50,15 @@ export function isEmptyString(v: unknown) {
 }
 
 /**
- * 是否为空 undefined null ''
+ * 是否为空
+ * @example isEmpty(null) // true
+ * @example isEmpty(undefined) // true
+ * @example isEmpty('') // true
+ * @example isEmpty([]) // true
+ * @example isEmpty({}) // true
+ * @example isEmpty(' ') // false
+ * @example isEmpty(123) // true
  */
-export function isEmpty(v: unknown) {
-  return isUndef(v) || isEmptyString(v)
+export function isEmpty(val: any) {
+  return val == null || !(Object.keys(val) || val).length
 }
