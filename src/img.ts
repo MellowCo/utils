@@ -13,27 +13,38 @@ interface IImageVerifyOptions {
    * canvas高度
    */
   height: number
+
+  /**
+   * 验证码
+   * @default: 随机生成
+   */
+  code: string
 }
 
 /**
  * 绘制图形验证码
  * @returns 随机验证码
  */
-export function drawImageVerify({ dom, width = 152, height = 40 }: IImageVerifyOptions) {
-  let imgCode = ''
-
+export function drawImageVerify({ dom, width = 152, height = 40, code = '' }: IImageVerifyOptions) {
   const NUMBER_STRING = '0123456789'
 
   const ctx = dom.getContext('2d')
   if (!ctx)
-    return imgCode
+    return code
 
   ctx.fillStyle = randomRgbColor(180, 230)
   ctx.fillRect(0, 0, width, height)
 
   for (let i = 0; i < 4; i += 1) {
-    const text = NUMBER_STRING[randomIntegerInRange(0, NUMBER_STRING.length)]
-    imgCode += text
+    let text = ''
+    if (code) {
+      text = code.charAt(i)
+    }
+    else {
+      text = NUMBER_STRING[randomIntegerInRange(0, NUMBER_STRING.length - 1)]
+      code += text
+    }
+
     const fontSize = randomIntegerInRange(18, 41)
     const deg = randomIntegerInRange(-30, 30)
     ctx.font = `${fontSize}px Simhei`
@@ -61,5 +72,5 @@ export function drawImageVerify({ dom, width = 152, height = 40 }: IImageVerifyO
     ctx.fill()
   }
 
-  return imgCode
+  return code
 }
