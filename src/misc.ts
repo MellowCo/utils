@@ -6,8 +6,10 @@ import { clone } from '.'
 export const invokeArrayFns = (fns: Function[], args?: any) => {
   let _args = clone(args)
 
-  for (let i = 0; i < fns.length; i++)
-    _args = fns[i](_args)
+  for (const fn of fns) {
+    const data = fn(_args)
+    _args = data
+  }
 
   return _args
 }
