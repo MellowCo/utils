@@ -240,3 +240,20 @@ export const enum HTTP_REQUEST {
   DELETE = 'DELETE',
 }
 
+export const enum TYPE_OF {
+  NUMBER = 'number',
+  STRING = 'string',
+  FUNCTION = 'function',
+  SYMBOL = 'symbol',
+  OBJECT_STR = 'object',
+  BOOLEAN = '[object Boolean]',
+  NULL = '[object Null]',
+  UNDEFINED = '[object Undefined]',
+  OBJECT = '[object Object]',
+  ARRAY = '[object Array]',
+  DATE = '[object Date]',
+  REGEXP = '[object RegExp]',
+  SET = '[object Set]',
+  MAP = '[object Map]',
+  FILE = '[object File]',
+}
