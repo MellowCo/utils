@@ -185,3 +185,34 @@ export const enum HTTP_STATUS {
   VERSION = 505,
 }
 
+export const enum DATE_FORMAT {
+  /**
+   * 分
+   */
+  TO_MINUTE = 'YYYY-MM-DD HH:mm',
+
+  /**
+   * 小时
+   */
+  TO_HOUR = 'YYYY-MM-DD HH',
+
+  /**
+   * 日
+   */
+  TO_DAY = 'YYYY-MM-DD',
+
+  /**
+   * 月
+   */
+  TO_MONTH = 'YYYY-MM',
+
+  /**
+   * 年
+   */
+  YEAR = 'YYYY',
+
+  /**
+   * 秒
+   */
+  TO_SECOND = 'YYYY-MM-DD HH:mm:ss',
+}

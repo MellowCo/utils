@@ -1,15 +1,7 @@
 import dayjs from 'dayjs'
+import { DATE_FORMAT } from './enum'
 
-export enum FormatType {
-  toMinute = 'YYYY-MM-DD HH:mm',
-  toHour = 'YYYY-MM-DD HH',
-  toDay = 'YYYY-MM-DD',
-  toMonth = 'YYYY-MM',
-  year = 'YYYY',
-  toSecond = 'YYYY-MM-DD HH:mm:ss',
-}
-
-type DateFormat = FormatType | string
+type DateFormat = DATE_FORMAT | string
 
 type IDate = Date | string
 
@@ -18,7 +10,7 @@ type IDate = Date | string
  * @param date - 日期 默认为当天
  * @param format - 格式 默认为YYYY-MM-DD HH:mm
  */
-export function formatDate(date?: IDate, format: DateFormat = FormatType.toSecond): string {
+export function formatDate(date?: IDate, format: DateFormat = DATE_FORMAT.TO_SECOND): string {
   if (!date)
     date = new Date()
 
@@ -29,7 +21,7 @@ export function formatDate(date?: IDate, format: DateFormat = FormatType.toSecon
  * 获取当前时间
  * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getNow(format: DateFormat = FormatType.toDay): string {
+export function getNow(format: DateFormat = DATE_FORMAT.TO_DAY): string {
   return dayjs().format(format)
 }
 
@@ -38,7 +30,7 @@ export function getNow(format: DateFormat = FormatType.toDay): string {
  * @param date - 日期 默认为当天
  * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getFirstDayOfMonth(date?: IDate, format: DateFormat = FormatType.toDay): string {
+export function getFirstDayOfMonth(date?: IDate, format: DateFormat = DATE_FORMAT.TO_DAY): string {
   if (!date)
     date = new Date()
 
@@ -50,7 +42,7 @@ export function getFirstDayOfMonth(date?: IDate, format: DateFormat = FormatType
  * @param date - 日期 默认为当天
  * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getLastDayOfMonth(date?: IDate, format: DateFormat = FormatType.toDay): string {
+export function getLastDayOfMonth(date?: IDate, format: DateFormat = DATE_FORMAT.TO_DAY): string {
   if (!date)
     date = new Date()
 
@@ -62,7 +54,7 @@ export function getLastDayOfMonth(date?: IDate, format: DateFormat = FormatType.
  * @param date - 日期 默认为当天
  * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getDaysOfMonth(date?: IDate, format: DateFormat = FormatType.toDay): string[] {
+export function getDaysOfMonth(date?: IDate, format: DateFormat = DATE_FORMAT.TO_DAY): string[] {
   return [getFirstDayOfMonth(date, format), getLastDayOfMonth(date, format)]
 }
 
@@ -70,7 +62,7 @@ export function getDaysOfMonth(date?: IDate, format: DateFormat = FormatType.toD
  * 获取上个月
  * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getDaysOfLastMonth(format = FormatType.toDay): string[] {
+export function getDaysOfLastMonth(format = DATE_FORMAT.TO_DAY): string[] {
   const month = dayjs().subtract(1, 'month').toDate()
   return [getFirstDayOfMonth(month, format), getLastDayOfMonth(month, format)]
 }
@@ -79,7 +71,7 @@ export function getDaysOfLastMonth(format = FormatType.toDay): string[] {
  * 获取月第一天 到 现在
  * @param format - 格式 默认为YYYY-MM-DD
  */
-export function getDaysToNowOfMonth(date?: IDate, format = FormatType.toDay): string[] {
+export function getDaysToNowOfMonth(date?: IDate, format = DATE_FORMAT.TO_DAY): string[] {
   return [getFirstDayOfMonth(date, format), getNow(format)]
 }
 
@@ -89,7 +81,7 @@ export function getDaysToNowOfMonth(date?: IDate, format = FormatType.toDay): st
  * @param format - 格式 默认为YYYY-MM-DD
  * @returns
  */
-export function getFirstDayOfYear(date?: IDate, format = FormatType.toDay): string {
+export function getFirstDayOfYear(date?: IDate, format = DATE_FORMAT.TO_DAY): string {
   if (!date)
     date = new Date()
 
@@ -99,7 +91,7 @@ export function getFirstDayOfYear(date?: IDate, format = FormatType.toDay): stri
 /**
  * 本周
  */
-export function getDaysOfWeek(format = FormatType.toDay): string[] {
+export function getDaysOfWeek(format = DATE_FORMAT.TO_DAY): string[] {
   return [
     dayjs().startOf('week').format(format),
     dayjs().endOf('week').format(format),
@@ -142,7 +134,7 @@ export function isBetween(d1: IDate, d2: IDate, d3: IDate = new Date()): boolean
  * @param format - 格式 默认为YYYY-MM-DD
  * @returns
  */
-export function addDays(days = 1, d: IDate = new Date(), format = FormatType.toDay): IDate {
+export function addDays(days = 1, d: IDate = new Date(), format = DATE_FORMAT.TO_DAY): IDate {
   return dayjs(d).add(days, 'day').format(format)
 }
 
@@ -153,7 +145,7 @@ export function addDays(days = 1, d: IDate = new Date(), format = FormatType.toD
  * @param format - 格式 默认为YYYY-MM-DD
  * @returns
  */
-export function subDays(days = 1, d: IDate = new Date(), format = FormatType.toDay): IDate {
+export function subDays(days = 1, d: IDate = new Date(), format = DATE_FORMAT.TO_DAY): IDate {
   return dayjs(d).subtract(days, 'day').format(format)
 }
 
