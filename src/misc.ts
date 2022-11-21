@@ -61,14 +61,16 @@ export function hideMobile(mobile: string) {
 /**
  * 键值对拼接成URL参数
  * @param obj - 键值对
- * @returns a=1&b=2
+ * @param encode - 是否编码
+ * @returns a=1&b=2 或者 a%3D1%26b%3D2
  */
-export const params2Url = (obj: Object) => {
+export const params2Url = (obj: Object, encode = false) => {
   const params = []
   for (const key in obj)
     params.push(`${key}=${obj[key]}`)
 
-  return encodeURIComponent(params.join('&'))
+  const paramsStr = params.join('&')
+  return encode ? encodeURIComponent(paramsStr) : paramsStr
 }
 
 /**
