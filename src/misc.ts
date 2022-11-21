@@ -1,9 +1,29 @@
+import { clone } from '.'
+
 /**
  * 执行数组里的函数
  */
-export const invokeArrayFns = (fns: Function[], arg?: any) => {
+export const invokeArrayFns = (fns: Function[], args?: any) => {
+  let _args = clone(args)
+
   for (let i = 0; i < fns.length; i++)
-    fns[i](arg)
+    _args = fns[i](_args)
+
+  return _args
+}
+
+/**
+ * 执行数组里的异步函数
+ */
+export const invokeArrayAsyncFns = async (fns: Function[], args?: any) => {
+  let _args = clone(args)
+
+  for (const fn of fns) {
+    const data = await fn(_args)
+    _args = data
+  }
+
+  return _args
 }
 
 /**
