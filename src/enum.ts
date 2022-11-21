@@ -185,6 +185,9 @@ export const enum HTTP_STATUS {
   VERSION = 505,
 }
 
+/**
+ * dayjs 时间格式
+ */
 export const enum DATE_FORMAT {
   /**
    * 分
@@ -216,3 +219,24 @@ export const enum DATE_FORMAT {
    */
   TO_SECOND = 'YYYY-MM-DD HH:mm:ss',
 }
+
+/**
+ * http contentType
+ */
+export const enum HTTP_CONTENT_TYPE {
+  JSON = 'application/json',
+  FORM_URLENCODED = 'application/x-www-form-urlencoded',
+  FORM_DATA = 'multipart/form-data',
+  TEXT = 'text/plain;charset=UTF-8',
+}
+
+/**
+ * http 请求方式
+ */
+export const enum HTTP_REQUEST {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}
+
