@@ -3,7 +3,7 @@ import { clone } from '.'
 /**
  * 执行数组里的函数
  */
-export const invokeArrayFns = (fns: Function[], args?: any) => {
+export const invokeArrayFns = (fns: Function[], args?: any): any => {
   let _args = clone(args)
 
   for (const fn of fns) {
@@ -17,7 +17,7 @@ export const invokeArrayFns = (fns: Function[], args?: any) => {
 /**
  * 执行数组里的异步函数
  */
-export const invokeArrayAsyncFns = async (fns: Function[], args?: any) => {
+export const invokeArrayAsyncFns = async (fns: Function[], args?: any): Promise<any> => {
   let _args = clone(args)
 
   for (const fn of fns) {
