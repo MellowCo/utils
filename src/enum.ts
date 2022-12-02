@@ -212,7 +212,7 @@ export const enum DATE_FORMAT {
   /**
    * 年
    */
-  YEAR = 'YYYY',
+  TO_YEAR = 'YYYY',
 
   /**
    * 秒

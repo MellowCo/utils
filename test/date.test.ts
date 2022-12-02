@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-07-20 11:39:40
- * @LastEditTime: 2022-11-21 21:29:21
+ * @LastEditTime: 2022-12-02 10:16:28
  * @LastEditors: licl
  * @Description:
  */
@@ -107,13 +107,13 @@ describe('date', () => {
   it('isAfter', () => {
     expect(isAfter('20220807')).toBe(true)
     expect(isAfter('20220807', '20210801')).toBe(false)
-    expect(isAfter(new Date(), '20221201')).toBe(true)
+    expect(isAfter(new Date(), '20231201')).toBe(true)
   })
 
   it('isBefore', () => {
     expect(isBefore('20220805')).toBe(false)
     expect(isBefore('20220807', '20210801')).toBe(true)
-    expect(isBefore(new Date(), '20221201')).toBe(false)
+    expect(isBefore(new Date(), '20231201')).toBe(false)
   })
 
   it('isBetween', () => {
