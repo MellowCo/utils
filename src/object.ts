@@ -40,17 +40,19 @@ export function clearNull(obj: any): any {
  * @param key - 键
  */
 const hasOwnProperty = Object.prototype.hasOwnProperty
-export const hasOwn = (
-  val: object,
-  key: string | symbol,
-): key is keyof typeof val => hasOwnProperty.call(val, key)
+export function hasOwn(val: object,
+  key: string | symbol): key is keyof typeof val {
+  return hasOwnProperty.call(val, key)
+}
 
 export const objectToString = Object.prototype.toString
 /**
  * 对象类型
  * @param value - 对象
  */
-export const toTypeString = (value: unknown): string => objectToString.call(value)
+export function toTypeString(value: unknown): string {
+  return objectToString.call(value)
+}
 
 /**
  * 比较一个值是否改变
@@ -58,5 +60,6 @@ export const toTypeString = (value: unknown): string => objectToString.call(valu
  * @param oldValue - 对象
  *
  */
-export const hasChanged = (value: any, oldValue: any): boolean => !Object.is(value, oldValue)
-
+export function hasChanged(value: any, oldValue: any): boolean {
+  return !Object.is(value, oldValue)
+}
