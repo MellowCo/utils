@@ -130,6 +130,15 @@ export function getHanByNumber(num: number) {
 }
 
 /**
+ * 根据数字获取星期几
+ * @param num - 数字(0-7)
+ */
+export function getDayByNumber(num: number) {
+  const DAY_STR = '日一二三四五六日'
+  return `周${DAY_STR.charAt(num)}`
+}
+
+/**
  * 插入字符串
  * @param str - 原字符串
  * @param start - 插入位置

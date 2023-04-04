@@ -9,6 +9,9 @@ type IDate = Date | string
  * 格式化日期
  * @param date - 日期 默认为当天
  * @param format - 格式 默认为YYYY-MM-DD HH:mm
+ * @example formatDate(null, 'YYYY-MM-DD') // 2023-04-04
+ * @example formatDate(new Date(), 'YYYY-MM-DD HH:mm:ss') // 2023-04-04 10:00:00
+ * @example formatDate('2023-04-04', 'YYYY-MM-DD HH:mm:ss') // 2023-04-04 00:00:00
  */
 export function formatDate(date?: IDate, format: DateFormat = DATE_FORMAT.TO_SECOND): string {
   if (!date)
@@ -158,4 +161,3 @@ export function toDate(date: string | string[]) {
 
   return date.map(item => dayjs(item).toDate())
 }
-

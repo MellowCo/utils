@@ -157,8 +157,8 @@ export function download(link: string, name?: string) {
 /**
  * 浏览器下载静态文件
  * @param name - 文件名
- * @param content - 文件内容 blob
- * @example downloadFile('1.json',JSON.stringify({name:'hahahha'}))
+ * @param content - 文件内容 非Blob类型会自动转换
+ * @example downloadFile('1.json','xxxxxxxxxxxx'))
  * @example downloadFile('1.json',new Blob([ data ]))
  */
 export function downloadFile(name: string, content: any) {
