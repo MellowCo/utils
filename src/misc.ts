@@ -174,3 +174,11 @@ export function downloadFile(name: string, content: any) {
   const link = URL.createObjectURL(content)
   download(link, name)
 }
+
+export function isMobile() {
+  return isMobileAgent(navigator.userAgent)
+}
+
+export function isMobileAgent(agent: string) {
+  return /Android|webOS|iPhone|iPod|BlackBerry|Mobile/i.test(agent)
+}
