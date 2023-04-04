@@ -228,6 +228,7 @@ export const enum HTTP_CONTENT_TYPE {
   FORM_URLENCODED = 'application/x-www-form-urlencoded',
   FORM_DATA = 'multipart/form-data',
   TEXT = 'text/plain;charset=UTF-8',
+  ZIP = 'application/zip',
 }
 
 /**
