@@ -1,7 +1,7 @@
 /*
  * @Author: licl
  * @Date: 2022-07-20 11:39:40
- * @LastEditTime: 2022-12-02 10:16:28
+ * @LastEditTime: 2023-04-04 14:41:57
  * @LastEditors: licl
  * @Description:
  */
@@ -62,7 +62,7 @@ describe('date', () => {
 
   it('getFirstDayOfYear', () => {
     expect(getFirstDayOfYear('2023')).toMatchInlineSnapshot('"2023-01-01"')
-    expect(getFirstDayOfYear('', DATE_FORMAT.TO_SECOND)).toMatchInlineSnapshot('"2022-01-01 00:00:00"')
+    expect(getFirstDayOfYear('', DATE_FORMAT.TO_SECOND)).toMatchInlineSnapshot('"2023-01-01 00:00:00"')
   })
 
   it('getDaysOfLastMonth', () => {
@@ -117,7 +117,7 @@ describe('date', () => {
   })
 
   it('isBetween', () => {
-    expect(isBetween('20220801', '20221205')).toBe(true)
+    expect(isBetween('20220801', '20231205')).toBe(true)
     expect(isBetween('20220101', '20220501')).toBe(false)
     expect(isBetween('20220101', '20220501', '20220302')).toBe(true)
   })

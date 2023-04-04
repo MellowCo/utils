@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { invokeArrayAsyncFns, invokeArrayFns, params2Url, seconds2DayTime, seconds2Time } from '../src'
+import { invokeArrayAsyncFns, invokeArrayFns, isMobileAgent, params2Url, seconds2DayTime, seconds2Time } from '../src'
 
 describe('misc', () => {
   it('seconds2Time', () => {
@@ -117,5 +117,20 @@ describe('misc', () => {
         "c": -56,
       }
     `)
+  })
+
+  it('userAgent is mobile', () => {
+    const edgePcAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.62'
+
+    const iPhoneAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/111.0.0.0'
+
+    const iPadAgent = 'Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1 Edg/111.0.0.0'
+
+    const androidAgent = 'Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36 Edg/111.0.0.0'
+
+    expect(isMobileAgent(edgePcAgent)).toBe(false)
+    expect(isMobileAgent(iPhoneAgent)).toBe(true)
+    expect(isMobileAgent(iPadAgent)).toBe(true)
+    expect(isMobileAgent(androidAgent)).toBe(true)
   })
 })
