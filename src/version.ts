@@ -1,7 +1,7 @@
 /**
  * 对比 version 的版本号
- * @param v1 - 版本号1
- * @param v2 - 版本号2
+ * @param v1 - 1.2.3
+ * @param v2 - 1.2.5
  * @returns -1: v1 < v2; 0: v1 = v2; 1: v1 > v2
  */
 export function compareVersion(v1: string, v2: string): number {
