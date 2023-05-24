@@ -3,7 +3,7 @@ import { clone } from '.'
 /**
  * 执行数组里的函数
  */
-export const invokeArrayFns = (fns: Function[], args?: any): any => {
+export function invokeArrayFns(fns: Function[], args?: any): any {
   let _args = clone(args)
 
   for (const fn of fns) {
@@ -17,7 +17,7 @@ export const invokeArrayFns = (fns: Function[], args?: any): any => {
 /**
  * 执行数组里的异步函数
  */
-export const invokeArrayAsyncFns = async (fns: Function[], args?: any): Promise<any> => {
+export async function invokeArrayAsyncFns(fns: Function[], args?: any): Promise<any> {
   let _args = clone(args)
 
   for (const fn of fns) {
@@ -33,7 +33,7 @@ export const invokeArrayAsyncFns = async (fns: Function[], args?: any): Promise<
  * @param str - 字符串
  * @returns foo => 193420387
  */
-export const stringHash = (str: string): number => {
+export function stringHash(str: string): number {
   let hash = 5381
   let i = str.length
 
@@ -44,7 +44,7 @@ export const stringHash = (str: string): number => {
 /**
  * uuid
  */
-export const uuid = (): string => {
+export function uuid(): string {
   return Array.from({ length: 16 }, () =>
     Math.floor(Math.random() * 256)
       .toString(16)
@@ -60,7 +60,7 @@ const urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwy
  * @param alphabet - 字符串
  * @param defaultSize - 长度
  */
-export const nanoid = (defaultSize = 21, alphabet = urlAlphabet) => {
+export function nanoid(defaultSize = 21, alphabet = urlAlphabet) {
   let id = ''
   // A compact alternative for `for (var i = 0; i < step; i++)`.
   let i = defaultSize
@@ -86,7 +86,7 @@ export function hideMobile(mobile: string) {
  * @param encode - 是否编码
  * @returns a=1&b=2 或者 a%3D1%26b%3D2
  */
-export const params2Url = (obj: Object, encode = false) => {
+export function params2Url(obj: Object, encode = false) {
   const params = []
   for (const key in obj)
     params.push(`${key}=${obj[key]}`)
@@ -99,7 +99,7 @@ export const params2Url = (obj: Object, encode = false) => {
  * 将总秒数转换成 时:分:秒
  * @param seconds - 秒
  */
-export const seconds2Time = (seconds: number) => {
+export function seconds2Time(seconds: number) {
   const hour = Math.floor(seconds / 3600)
   const minute = Math.floor((seconds - hour * 3600) / 60)
   const second = seconds - hour * 3600 - minute * 60
@@ -110,7 +110,7 @@ export const seconds2Time = (seconds: number) => {
  * 将总秒数转换成 日:时:分:秒
  * @param seconds - 秒
  */
-export const seconds2DayTime = (seconds: number) => {
+export function seconds2DayTime(seconds: number) {
   const day = Math.floor(seconds / 86400)
   const hour = Math.floor((seconds - day * 86400) / 3600)
   const minute = Math.floor((seconds - day * 86400 - hour * 3600) / 60)
