@@ -1,7 +1,7 @@
 import { isArray } from '.'
 
 /**
- * 深度拷贝对象
+ * JSON深度拷贝对象
  * @param  obj - 对象
  * @returns 拷贝的对象
  */
