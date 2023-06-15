@@ -4,7 +4,6 @@ import { clone, isObject } from '.'
  * 执行数组里的函数, 每个函数的返回值作为下一个函数的参数
  * @param fns - 函数数组
  * @param args - 参数
- * @returns any
  */
 export function invokeArrayFns<T = any, P = any>(fns: Function[], args?: P): T {
   let _args = args
@@ -25,7 +24,6 @@ export function invokeArrayFns<T = any, P = any>(fns: Function[], args?: P): T {
  * 执行数组里的异步函数, 每个函数的返回值作为下一个函数的参数
  * @param fns - 函数数组
  * @param args - 参数
- * @returns Promise
  */
 export async function invokeArrayAsyncFns<T = any, P = any>(fns: Function[], args?: P): Promise<T> {
   let _args = clone(args)

@@ -7,5 +7,5 @@ import { isString } from '.'
  */
 export function toNumber(val: any): any {
   const n = isString(val) ? Number(val) : NaN
-  return isNaN(n) ? val : n
+  return Number.isNaN(n) ? val : n
 }
