@@ -1,4 +1,4 @@
-import { isArray } from '.'
+import { isArray, isUndefined } from '.'
 
 /**
  * JSON深度拷贝对象
@@ -62,4 +62,29 @@ export function toTypeString(value: unknown): string {
  */
 export function hasChanged(value: any, oldValue: any): boolean {
   return !Object.is(value, oldValue)
+}
+
+/**
+ * 获取对象的属性值
+ * @param obj - 对象
+ * @param path - 属性路径
+ * @param defaultValue - 属性路径不存在，返回默认值
+ * @example
+ * const obj = { a: { b: { c: 1 } } }
+ * getByPath(obj, 'a.b.c') // 1
+ * getByPath(obj, 'a.b.d') // 'no value'
+ * getByPath(obj, 'a.b.d', 2) // 2
+ */
+export function getByPath(obj: any, path: string, defaultValue: any = 'no value'): any {
+  const parts = path.split('.')
+  const key = parts.shift()
+
+  if (!isUndefined(key) && !isUndefined(obj[key])) {
+    return parts.length > 0
+      ? getByPath(obj[key], parts.join('.'), defaultValue)
+      : obj[key]
+  }
+
+  // 如果没有找到key返回 defaultValue
+  return defaultValue
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { clearNull } from '../src/object'
+import { clearNull, clone, getByPath } from '../src'
 
 describe('object', () => {
   it('clearNull', () => {
@@ -137,8 +137,28 @@ describe('object', () => {
       ],
     }
 
-    expect(user.age).toBe(18)
-    expect(user.obj.age).toBe(18)
-    expect(user.arr[0].age).toBe(18)
+    const user2 = clone(user)
+
+    expect(user === user2).toBe(false)
+    user2.name = '苏打水2'
+    expect(user.name).toBe('苏打水')
+    expect(user2.name).toBe('苏打水2')
+  })
+
+  it('getByPath', () => {
+    const user = {
+      name: '苏打水',
+      age: 18,
+      address: '北京 海淀区 上地十街10号',
+      obj: {
+        name: '苏打水',
+        age: 18,
+      },
+    }
+
+    expect(getByPath(user, 'address')).toMatchInlineSnapshot('"北京 海淀区 上地十街10号"')
+    expect(getByPath(user, 'address2')).toMatchInlineSnapshot('"no value"')
+    expect(getByPath(user, 'obj.name')).toMatchInlineSnapshot('"苏打水"')
+    expect(getByPath(user, 'obj.name2')).toMatchInlineSnapshot('"no value"')
   })
 })
