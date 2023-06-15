@@ -23,7 +23,6 @@ interface IImageVerifyOptions {
 
 /**
  * 绘制图形验证码
- * @returns 随机验证码
  */
 export function drawImageVerify({ dom, width = 152, height = 40, code = '' }: IImageVerifyOptions) {
   const NUMBER_STRING = '0123456789'
