@@ -4,7 +4,7 @@ const camelizeRE = /-(\w)/g
  * @param str - 字符串
  * @example user-info => userInfo
  */
-export const camelize = (str: string): string => {
+export function camelize(str: string): string {
   return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
 }
 
@@ -17,7 +17,7 @@ export const camelize = (str: string): string => {
  * Some label that needs to be pascalized => SomeLabelThatNeedsToBePascalized
  * some-mixed_string with spaces_underscores-and-hyphens => SomeMixedStringWithSpacesUnderscoresAndHyphens
  */
-export const toPascalCase = (str: string): string => {
+export function toPascalCase(str: string): string {
   return str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
     .map(x => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())
     .join('')
@@ -30,7 +30,7 @@ export const toPascalCase = (str: string): string => {
  * @example hello_world => helloWorld
  * @example hello world => helloWorld
  */
-export const toCamelCase = (str: string) => {
+export function toCamelCase(str: string) {
   const s
     = str
     && str
@@ -49,12 +49,13 @@ export const toCamelCase = (str: string) => {
  * @example hello_world => hello-world
  * @example hello world => hello-world
  */
-export const toKebabCase = (str: string) =>
-  str
+export function toKebabCase(str: string) {
+  return str
   && str
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
     .map(x => x.toLowerCase())
     .join('-')
+}
 
 /**
  * 将字符串转换为 snake
@@ -63,12 +64,13 @@ export const toKebabCase = (str: string) =>
  * @example hello_world => hello_world
  * @example hello world => hello_world
  */
-export const toSnakeCase = (str: string) =>
-  str
+export function toSnakeCase(str: string) {
+  return str
   && str
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
     .map(x => x.toLowerCase())
     .join('_')
+}
 
 /**
  * 字符数组
@@ -82,8 +84,9 @@ export const toCharArray = (s: string) => [...s]
  * @param str - 字符串
  * @example userInfo => UserInfo
  */
-export const capitalize
-  = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
+export function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
 
 const hyphenateRE = /\B([A-Z])/g
 /**
@@ -91,8 +94,9 @@ const hyphenateRE = /\B([A-Z])/g
  * @param str - 字符串
  * @example UserInfo => user-info
  */
-export const hyphenate = (str: string) =>
-  str.replace(hyphenateRE, '-$1').toLowerCase()
+export function hyphenate(str: string) {
+  return str.replace(hyphenateRE, '-$1').toLowerCase()
+}
 
 /**
  * 替换所有相同字符串

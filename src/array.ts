@@ -3,7 +3,7 @@
  * @param arr - 数组
  * @param el - 元素
  */
-export const removeAt = <T>(arr: T[], el: T) => {
+export function removeAt<T>(arr: T[], el: T) {
   const i = arr.indexOf(el)
   if (i > -1)
     arr.splice(i, 1)
@@ -18,7 +18,7 @@ export const removeAt = <T>(arr: T[], el: T) => {
  * let otherArray = [2, 10];
  * insertAt(otherArray, 0, 4, 6, 8); // otherArray = [2, 4, 6, 8, 10]
  */
-export const insertAt = <T>(arr: T[], index: number, ...v: T[]) => {
+export function insertAt<T>(arr: T[], index: number, ...v: T[]) {
   arr.splice(index + 1, 0, ...v)
   return arr
 }
@@ -32,7 +32,7 @@ export const insertAt = <T>(arr: T[], index: number, ...v: T[]) => {
  * last(null); // undefined
  * last(undefined); // undefined
  */
-export const last = <T>(arr: T[]) => (arr && arr.length ? arr[arr.length - 1] : undefined)
+export const last = <T>(arr: T[]) => (arr && (arr.length ? arr[arr.length - 1] : undefined))
 
 /**
  * 返回数组中的最后 n 个元素
