@@ -226,3 +226,25 @@ export function isMobile() {
 export function groupArrayByKey<T = any>(arr: T[] = [], key: keyof T) {
   return arr.reduce((t, v) => (!t[v[key]] && ((t[v[key]] = []), t[v[key]].push(v), t)), {} as any)
 }
+
+/**
+ * 转柯里化函数
+ * @param fn - 函数
+ * @example
+ * const add = (a, b) => a + b
+ * const curriedAdd = curry(add)
+ * curriedAdd(1)(2) // 3
+ * curriedAdd(1, 2) // 3
+ */
+export function toCurryFunc<T = any>(fn: Function) {
+  return function curried(this: any, ...args: T[]) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args)
+    }
+    else {
+      return (...args2: T[]) => {
+        return curried.apply(this, args.concat(args2))
+      }
+    }
+  }
+}

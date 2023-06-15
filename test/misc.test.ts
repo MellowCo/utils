@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { groupArrayByKey, invokeArrayAsyncFns, invokeArrayFns, isMobileAgent, params2Url, seconds2DayTime, seconds2Time } from '../src'
+import { groupArrayByKey, invokeArrayAsyncFns, invokeArrayFns, isMobileAgent, params2Url, seconds2DayTime, seconds2Time, toCurryFunc } from '../src'
 
 describe('misc', () => {
   it('seconds2Time', () => {
@@ -156,7 +156,7 @@ describe('misc', () => {
     expect(isMobileAgent(androidAgent)).toBe(true)
   })
 
-  it('userAgent is mobile 2', () => {
+  it('groupArrayByKey', () => {
     const arr = [
       { classId: '1', name: '张三', age: 16 },
       { classId: '1', name: '李四', age: 15 },
@@ -204,5 +204,13 @@ describe('misc', () => {
         ],
       }
     `)
+  })
+
+  it('toCurryFunc', () => {
+    const add = (a: number, b: number) => a + b
+    const curriedAdd = toCurryFunc<number>(add)
+
+    expect(curriedAdd(1)(2)).toMatchInlineSnapshot('3')
+    expect(curriedAdd(1, 2)).toMatchInlineSnapshot('3')
   })
 })
