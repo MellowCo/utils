@@ -185,10 +185,46 @@ export function downloadFile(name: string, content: any) {
   download(link, name)
 }
 
+/**
+ * 判断是否是移动端agent字符
+ * @param agent - agent string
+ * @returns true or false
+ */
+export function isMobileAgent(agent: string) {
+  return /Android|webOS|iPhone|iPod|BlackBerry|Mobile/i.test(agent)
+}
+
+/**
+ * 判断是否是移动端
+ * @returns
+ */
 export function isMobile() {
   return isMobileAgent(navigator.userAgent)
 }
 
-export function isMobileAgent(agent: string) {
-  return /Android|webOS|iPhone|iPod|BlackBerry|Mobile/i.test(agent)
+/**
+ * 将数组按照 key 分组
+ * @param arr 数组
+ * @param key arr对象的key
+ * @example
+ * const arr = [
+ *    { classId: '1', name: '张三', age: 16 },
+ *    { classId: '1', name: '李四', age: 15 },
+ *    { classId: '2', name: '王五', age: 16 },
+ * ]
+ * groupArrayByKey(arr, 'classId')
+ *
+ * // 结果
+ * {
+ *   1: [
+ *       { classId: '1', name: '张三', age: 16 },
+ *       { classId: '1', name: '李四', age: 15 }
+ *   ],
+ *  2: [
+ *     { classId: '2', name: '王五', age: 16 }
+ *  ]
+ * }
+ */
+export function groupArrayByKey<T = any>(arr: T[] = [], key: keyof T) {
+  return arr.reduce((t, v) => (!t[v[key]] && ((t[v[key]] = []), t[v[key]].push(v), t)), {} as any)
 }

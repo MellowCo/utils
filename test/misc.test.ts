@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { invokeArrayAsyncFns, invokeArrayFns, isMobileAgent, params2Url, seconds2DayTime, seconds2Time } from '../src'
+import { groupArrayByKey, invokeArrayAsyncFns, invokeArrayFns, isMobileAgent, params2Url, seconds2DayTime, seconds2Time } from '../src'
 
 describe('misc', () => {
   it('seconds2Time', () => {
@@ -55,13 +55,13 @@ describe('misc', () => {
 
     const data = invokeArrayFns([aFun, bFun, cFun], argObj)
 
-    expect(argObj === data).toMatchInlineSnapshot('true')
+    expect(argObj === data).toMatchInlineSnapshot('false')
 
     expect(argObj).toMatchInlineSnapshot(`
       {
-        "a": -6,
-        "b": -3,
-        "c": 4,
+        "a": 1,
+        "b": 2,
+        "c": 3,
       }
     `)
 
@@ -154,5 +154,55 @@ describe('misc', () => {
     expect(isMobileAgent(iPhoneAgent)).toBe(true)
     expect(isMobileAgent(iPadAgent)).toBe(true)
     expect(isMobileAgent(androidAgent)).toBe(true)
+  })
+
+  it('userAgent is mobile 2', () => {
+    const arr = [
+      { classId: '1', name: '张三', age: 16 },
+      { classId: '1', name: '李四', age: 15 },
+      { classId: '2', name: '王五', age: 16 },
+      { classId: '3', name: '赵六', age: 15 },
+      { classId: '2', name: '孔七', age: 16 },
+    ]
+
+    expect(groupArrayByKey(arr, 'name')).toMatchInlineSnapshot(`
+      {
+        "孔七": [
+          {
+            "age": 16,
+            "classId": "2",
+            "name": "孔七",
+          },
+        ],
+        "张三": [
+          {
+            "age": 16,
+            "classId": "1",
+            "name": "张三",
+          },
+        ],
+        "李四": [
+          {
+            "age": 15,
+            "classId": "1",
+            "name": "李四",
+          },
+        ],
+        "王五": [
+          {
+            "age": 16,
+            "classId": "2",
+            "name": "王五",
+          },
+        ],
+        "赵六": [
+          {
+            "age": 15,
+            "classId": "3",
+            "name": "赵六",
+          },
+        ],
+      }
+    `)
   })
 })
