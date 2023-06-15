@@ -1,23 +1,33 @@
-import { clone } from '.'
+import { clone, isObject } from '.'
 
 /**
- * 执行数组里的函数
+ * 执行数组里的函数, 每个函数的返回值作为下一个函数的参数
+ * @param fns - 函数数组
+ * @param args - 参数
+ * @returns any
  */
-export function invokeArrayFns(fns: Function[], args?: any): any {
-  let _args = clone(args)
+export function invokeArrayFns<T = any, P = any>(fns: Function[], args?: P): T {
+  let _args = args
+
+  // 如果参数是对象, 则深拷贝一份, 防止修改原对象
+  if (isObject(_args))
+    _args = clone(args)
 
   for (const fn of fns) {
     const data = fn(_args)
     _args = data
   }
 
-  return _args
+  return _args as T
 }
 
 /**
- * 执行数组里的异步函数
+ * 执行数组里的异步函数, 每个函数的返回值作为下一个函数的参数
+ * @param fns - 函数数组
+ * @param args - 参数
+ * @returns Promise
  */
-export async function invokeArrayAsyncFns(fns: Function[], args?: any): Promise<any> {
+export async function invokeArrayAsyncFns<T = any, P = any>(fns: Function[], args?: P): Promise<T> {
   let _args = clone(args)
 
   for (const fn of fns) {
@@ -25,11 +35,11 @@ export async function invokeArrayAsyncFns(fns: Function[], args?: any): Promise<
     _args = data
   }
 
-  return _args
+  return _args as Promise<T>
 }
 
 /**
- * Nano version of string hash
+ * 字符串哈希
  * @param str - 字符串
  * @returns foo => 193420387
  */

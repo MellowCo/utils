@@ -24,7 +24,7 @@ describe('misc', () => {
     }, true)).toMatchInlineSnapshot('"a%3D1%26b%3D2"')
   })
 
-  it('invokeArrayFns', () => {
+  it('invokeArrayFns Object Args', () => {
     const argObj = {
       a: 1,
       b: 2,
@@ -55,11 +55,13 @@ describe('misc', () => {
 
     const data = invokeArrayFns([aFun, bFun, cFun], argObj)
 
+    expect(argObj === data).toMatchInlineSnapshot('true')
+
     expect(argObj).toMatchInlineSnapshot(`
       {
-        "a": 1,
-        "b": 2,
-        "c": 3,
+        "a": -6,
+        "b": -3,
+        "c": 4,
       }
     `)
 
@@ -70,6 +72,26 @@ describe('misc', () => {
         "c": 4,
       }
     `)
+  })
+
+  it('invokeArrayFns Args', () => {
+    function aFun(arg: any) {
+      return arg + 10
+    }
+
+    function bFun(arg: any) {
+      return arg + 20
+    }
+
+    function cFun(arg: any) {
+      return arg + 30
+    }
+
+    const data1 = invokeArrayFns([aFun, bFun, cFun], '23')
+    const data2 = invokeArrayFns([aFun, bFun, cFun], 10)
+
+    expect(data1).toMatchInlineSnapshot('"23102030"')
+    expect(data2).toMatchInlineSnapshot('70')
   })
 
   it('invokeArrayAsyncFns', async () => {

@@ -5,7 +5,7 @@ import { isArray } from '.'
  * @param  obj - 对象
  * @returns 拷贝的对象
  */
-export function clone(obj: object): object {
+export function clone<T = any>(obj: T): T {
   return JSON.parse(JSON.stringify(obj))
 }
 
