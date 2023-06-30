@@ -55,8 +55,8 @@ describe('date', () => {
   it('getDaysOfWeek', () => {
     expect(getDaysOfWeek()).toMatchInlineSnapshot(`
       [
-        "2023-06-11",
-        "2023-06-17",
+        "2023-06-25",
+        "2023-07-01",
       ]
     `)
   })
@@ -65,7 +65,7 @@ describe('date', () => {
     expect(getDaysToNowOfMonth()).toMatchInlineSnapshot(`
       [
         "2023-06-01",
-        "2023-06-15",
+        "2023-06-30",
       ]
     `)
     expect(getDaysToNowOfMonth('', DATE_FORMAT.TO_MONTH)).toMatchInlineSnapshot(`
@@ -77,7 +77,7 @@ describe('date', () => {
     expect(getDaysToNowOfMonth('2014')).toMatchInlineSnapshot(`
       [
         "2014-01-01",
-        "2023-06-15",
+        "2023-06-30",
       ]
     `)
   })
