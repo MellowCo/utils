@@ -1,16 +1,17 @@
 /**
- * 移除数组中的某个元素
+ * 移除数组中的某个元素(改变原数组)
  * @param arr - 数组
  * @param el - 元素
  */
 export function removeAt<T>(arr: T[], el: T) {
   const i = arr.indexOf(el)
+
   if (i > -1)
     arr.splice(i, 1)
 }
 
 /**
- * 将值插入到指定索引之后
+ * 将值插入到指定索引之后(改变原数组)
  * @param arr - 数组
  * @param index - 索引
  * @param v - 值
@@ -50,7 +51,7 @@ export const lastN = <T>(arr: T[], n: number) => arr.slice(-n)
  * @param fn - 判断函数
  * @example all([4, 2, 3], x => x > 1) => true
  */
-export function all(arr: unknown[], fn = Boolean) {
+export function all<T>(arr: T[], fn: (v: T) => boolean) {
   return arr.every(fn)
 }
 
@@ -96,9 +97,9 @@ export function removeDuplicates<T>(arr: T[]) {
  * 根据条件移除数组中的元素 (对象)
  * @param arr - 数组
  * @param prop - 属性
- * @example removeBy([{ id: 1 }, { id: 2 }, { id: 2 }], 'id') => [{ id: 1 }, { id: 2 }]
+ * @example removeByProp([{ id: 1 }, { id: 2 }, { id: 2 }], 'id') => [{ id: 1 }, { id: 2 }]
  */
-export function duplicateBy<T>(arr: T[], prop: keyof T) {
+export function removeByProp<T>(arr: T[], prop: keyof T) {
   return [
     ...arr.reduce((prev, cur) => prev.set(cur[prop], cur), new Map()).values(),
   ]
@@ -148,4 +149,34 @@ export function closest(arr: number[], n: number) {
  */
 export function transpose<T>(matrix: T[][]) {
   return matrix[0].map((_, i) => matrix.map(row => row[i]))
+}
+
+/**
+ * 将数组按照 key 分组
+ * @param arr 数组
+ * @param key arr对象的key
+ * @example
+ * const arr = [
+ *    { classId: '1', name: '张三', age: 16 },
+ *    { classId: '1', name: '李四', age: 15 },
+ *    { classId: '2', name: '王五', age: 16 },
+ * ]
+ * groupArrayByKey(arr, 'classId')
+ *
+ * // 结果
+ * {
+ *   1: [
+ *       { classId: '1', name: '张三', age: 16 },
+ *       { classId: '1', name: '李四', age: 15 }
+ *   ],
+ *  2: [
+ *     { classId: '2', name: '王五', age: 16 }
+ *  ]
+ * }
+ */
+export function groupArrayByKey<T = any>(arr: T[] = [], key: keyof T) {
+  return arr.reduce((t, v) => {
+    !t[v[key]] ? (t[v[key]] = [v]) : t[v[key]].push(v)
+    return t
+  }, {} as any)
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { clone, getByPath, normalize } from '../src'
+import { clone, getByPath, normalize, omit, omitBy, pick, pickBy } from '../src'
 
 describe('object', () => {
   it('normalize', () => {
@@ -160,5 +160,39 @@ describe('object', () => {
     expect(getByPath(user, 'address2')).toMatchInlineSnapshot('"no value"')
     expect(getByPath(user, 'obj.name')).toMatchInlineSnapshot('"苏打水"')
     expect(getByPath(user, 'obj.name2')).toMatchInlineSnapshot('"no value"')
+  })
+
+  it('omit', () => {
+    expect(omit({ a: 1, b: 2, c: 3 }, ['a', 'b'])).toMatchInlineSnapshot(`
+      {
+        "c": 3,
+      }
+    `)
+  })
+
+  it('omitBy', () => {
+    expect(omitBy({ a: 1, b: 2, c: 3 }, value => value > 1)).toMatchInlineSnapshot(`
+      {
+        "a": 1,
+      }
+    `)
+  })
+
+  it('pick', () => {
+    expect(pick({ a: 1, b: 2, c: 3 }, ['a', 'b'])).toMatchInlineSnapshot(`
+      {
+        "a": 1,
+        "b": 2,
+      }
+    `)
+  })
+
+  it('pickBy', () => {
+    expect(pickBy({ a: 1, b: 2, c: 3 }, value => value > 1)).toMatchInlineSnapshot(`
+      {
+        "b": 2,
+        "c": 3,
+      }
+    `)
   })
 })

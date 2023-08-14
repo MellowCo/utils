@@ -145,33 +145,6 @@ function fillZero(num: number) {
 }
 
 /**
- * 将数组按照 key 分组
- * @param arr 数组
- * @param key arr对象的key
- * @example
- * const arr = [
- *    { classId: '1', name: '张三', age: 16 },
- *    { classId: '1', name: '李四', age: 15 },
- *    { classId: '2', name: '王五', age: 16 },
- * ]
- * groupArrayByKey(arr, 'classId')
- *
- * // 结果
- * {
- *   1: [
- *       { classId: '1', name: '张三', age: 16 },
- *       { classId: '1', name: '李四', age: 15 }
- *   ],
- *  2: [
- *     { classId: '2', name: '王五', age: 16 }
- *  ]
- * }
- */
-export function groupArrayByKey<T = any>(arr: T[] = [], key: keyof T) {
-  return arr.reduce((t, v) => (!t[v[key]] && ((t[v[key]] = []), t[v[key]].push(v), t)), {} as any)
-}
-
-/**
  * 转柯里化函数
  * @param fn - 函数
  * @example
