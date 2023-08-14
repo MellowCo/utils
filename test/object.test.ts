@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { clearNull, clone, getByPath } from '../src'
+import { clone, getByPath, normalize } from '../src'
 
 describe('object', () => {
-  it('clearNull', () => {
+  it('normalize', () => {
     const user = {
       name: '',
       age: 18,
@@ -72,12 +72,12 @@ describe('object', () => {
       ],
     }
 
-    expect(clearNull([])).toMatchInlineSnapshot('[]')
-    expect(clearNull(123)).toMatchInlineSnapshot('123')
-    expect(clearNull('123')).toMatchInlineSnapshot('"123"')
-    expect(clearNull(true)).toMatchInlineSnapshot('true')
+    expect(normalize([])).toMatchInlineSnapshot('[]')
+    expect(normalize(123)).toMatchInlineSnapshot('123')
+    expect(normalize('123')).toMatchInlineSnapshot('"123"')
+    expect(normalize(true)).toMatchInlineSnapshot('true')
 
-    expect(clearNull(user)).toMatchInlineSnapshot(`
+    expect(normalize(user)).toMatchInlineSnapshot(`
       {
         "age": 18,
         "b": [

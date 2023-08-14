@@ -14,7 +14,7 @@ export function clone<T = any>(obj: T): T {
  * @param  obj - 对象
  * @returns 清除后的对象
  */
-export function clearNull(obj: any): any {
+export function normalize(obj: any): any {
   if (typeof obj === 'object') {
     const result = clone(obj)
 
@@ -23,13 +23,13 @@ export function clearNull(obj: any): any {
       if ([null, ''].includes(current) || (isArray(current) && current.length === 0))
         delete result[key]
       else
-        result[key] = clearNull(current)
+        result[key] = normalize(current)
     }
     return result
   }
 
   if (isArray(obj))
-    return obj.map((item: any) => clearNull(item))
+    return obj.map((item: any) => normalize(item))
 
   return obj
 }
@@ -87,4 +87,81 @@ export function getByPath(obj: any, path: string, defaultValue: any = 'no value'
 
   // 如果没有找到key返回 defaultValue
   return defaultValue
+}
+
+/**
+ * 忽略对象选中的属性
+ * @param object 来源对象
+ * @param paths 要被忽略的属性数组
+ * @example const obj = { a: 1, b: 2, c: 3 }
+ * omit(obj, ['a', 'b']) // { c: 3 }
+ */
+export function omit<T extends object, K extends keyof T>(object: T, paths: K[]) {
+  /** 获取对象的属性数组，然后筛出给定的key */
+  return (Object.keys(object) as K[]).reduce((acc, key) => {
+    if (!paths.includes(key))
+      hasOwnProperty(key) && (acc[key] = object[key])
+
+    return acc
+  }, {} as Pick<T, K>)
+}
+
+/**
+ * 生成经 predicate 判断为假值的属性的对象
+ * @param object 来源对象
+ * @param predicate 调用每一个属性的函数
+ * @exapmle const obj = { a: 1, b: 2, c: 3 }
+ * omitBy(obj, (value, key) => value > 1) // { a: 1 }
+ */
+export function omitBy<T>(
+  object: T,
+  predicate: (item: T[Extract<keyof T, string>], key: keyof T) => {},
+) {
+  const result = {} as { [K in keyof T]: T[K] }
+  for (const key in object) {
+    const curProperty = object[key]
+
+    if (!predicate(curProperty, key))
+      result[key] = curProperty
+  }
+
+  return result
+}
+
+/**
+ * 生成选中属性的对象
+ * @param  object 来源对象
+ * @param  paths 要被选中的属性数组
+ * @example const obj = { a: 1, b: 2, c: 3 }
+ * pick(obj, ['a', 'b']) // { a: 1, b: 2 }
+ */
+export function pick<T extends object, K extends keyof T>(object: T, paths: K[] = []) {
+  /** 筛出给定的key */
+  return paths.reduce((acc, key) => {
+    hasOwnProperty(key) && (acc[key] = object[key])
+    return acc
+  }, {} as Pick<T, K>)
+}
+
+/**
+ *  生成经 predicate 判断为真值的属性的对象
+ * @param object 来源对象
+ * @param predicate 调用每一个属性的函数
+ * @example const obj = { a: 1, b: 2, c: 3 }
+ * pickBy(obj, (value, key) => value > 1) // { b: 2, c: 3 }
+ */
+export function pickBy<T>(
+  object: T,
+  predicate: (item: T[Extract<keyof T, string>], key: keyof T) => {},
+) {
+  const result = {} as { [K in keyof T]: T[K] }
+
+  for (const key in object) {
+    const curProperty = object[key]
+
+    if (predicate(curProperty, key))
+      result[key] = curProperty
+  }
+
+  return result
 }
