@@ -1,3 +1,4 @@
+import type { AnyFn } from './types'
 import { clone, isObject } from '.'
 
 /**
@@ -5,7 +6,7 @@ import { clone, isObject } from '.'
  * @param fns - 函数数组
  * @param args - 参数
  */
-export function invokeArrayFns<T = any, P = any>(fns: Function[], args?: P): T {
+export function invokeArrayFns<T = any, P = any>(fns: AnyFn[], args?: P): T {
   let _args = args
 
   // 如果参数是对象, 则深拷贝一份, 防止修改原对象
@@ -25,7 +26,7 @@ export function invokeArrayFns<T = any, P = any>(fns: Function[], args?: P): T {
  * @param fns - 函数数组
  * @param args - 参数
  */
-export async function invokeArrayAsyncFns<T = any, P = any>(fns: Function[], args?: P): Promise<T> {
+export async function invokeArrayAsyncFns<T = any, P = any>(fns: AnyFn[], args?: P): Promise<T> {
   let _args = clone(args)
 
   for (const fn of fns) {
@@ -94,7 +95,7 @@ export function hideMobile(mobile: string) {
  * @param encode - 是否编码
  * @returns a=1&b=2 或者 a%3D1%26b%3D2
  */
-export function params2Url(obj: Object, encode = false) {
+export function params2Url(obj: object, encode = false) {
   const params = []
   for (const key in obj)
     params.push(`${key}=${obj[key]}`)
@@ -179,7 +180,7 @@ export function groupArrayByKey<T = any>(arr: T[] = [], key: keyof T) {
  * curriedAdd(1)(2) // 3
  * curriedAdd(1, 2) // 3
  */
-export function toCurryFunc<T = any>(fn: Function) {
+export function toCurryFunc<T = any>(fn: AnyFn) {
   return function curried(this: any, ...args: T[]) {
     if (args.length >= fn.length) {
       return fn.apply(this, args)

@@ -1,3 +1,4 @@
+/* eslint-disable valid-typeof */
 import { TYPE_OF } from './enum'
 import { toTypeString } from './object'
 
@@ -13,7 +14,7 @@ export const isString = (val: unknown): val is string => typeof val === TYPE_OF.
 
 export const isDate = (val: unknown): val is Date => toTypeString(val) === TYPE_OF.DATE
 
-export const isFunction = (val: unknown): val is Function => typeof val === TYPE_OF.FUNCTION
+export const isFunction = (val: unknown) => typeof val === TYPE_OF.FUNCTION
 
 export const isSymbol = (val: unknown): val is symbol => typeof val === TYPE_OF.SYMBOL
 

@@ -6,6 +6,6 @@ import { isString } from '.'
  * @returns
  */
 export function toNumber(val: any): any {
-  const n = isString(val) ? Number(val) : NaN
+  const n = isString(val) ? Number(val) : Number.NaN
   return Number.isNaN(n) ? val : n
 }

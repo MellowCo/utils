@@ -115,7 +115,7 @@ export function omit<T extends object, K extends keyof T>(object: T, paths: K[])
  */
 export function omitBy<T>(
   object: T,
-  predicate: (item: T[Extract<keyof T, string>], key: keyof T) => {},
+  predicate: (item: T[Extract<keyof T, string>], key: keyof T) => object,
 ) {
   const result = {} as { [K in keyof T]: T[K] }
   for (const key in object) {
@@ -152,7 +152,7 @@ export function pick<T extends object, K extends keyof T>(object: T, paths: K[] 
  */
 export function pickBy<T>(
   object: T,
-  predicate: (item: T[Extract<keyof T, string>], key: keyof T) => {},
+  predicate: (item: T[Extract<keyof T, string>], key: keyof T) => object,
 ) {
   const result = {} as { [K in keyof T]: T[K] }
 
