@@ -188,36 +188,36 @@ export const HTTP_STATUS = {
 /**
  * dayjs 时间格式
  */
-export const DATE_FORMAT = {
+export enum DATE_FORMAT {
   /**
    * 分
    */
-  TO_MINUTE: 'YYYY-MM-DD HH:mm',
+  TO_MINUTE = 'YYYY-MM-DD HH:mm',
 
   /**
    * 小时
    */
-  TO_HOUR: 'YYYY-MM-DD HH',
+  TO_HOUR = 'YYYY-MM-DD HH',
 
   /**
    * 日
    */
-  TO_DAY: 'YYYY-MM-DD',
+  TO_DAY = 'YYYY-MM-DD',
 
   /**
    * 月
    */
-  TO_MONTH: 'YYYY-MM',
+  TO_MONT = 'YYYY-MM',
 
   /**
    * 年
    */
-  TO_YEAR: 'YYYY',
+  TO_YEAR = 'YYYY',
 
   /**
    * 秒
    */
-  TO_SECOND: 'YYYY-MM-DD HH:mm:ss',
+  TO_SECOND = 'YYYY-MM-DD HH:mm:ss',
 }
 
 /**
