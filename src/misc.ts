@@ -5,6 +5,7 @@ import { clone, isObject } from '.'
  * 执行数组里的函数, 每个函数的返回值作为下一个函数的参数
  * @param fns - 函数数组
  * @param args - 参数
+ * @example invokeArrayFns([a => a + 1, b => b + 2], 2) // 5
  */
 export function invokeArrayFns<T = any, P = any>(fns: AnyFn[], args?: P): T {
   let _args = args
@@ -25,6 +26,7 @@ export function invokeArrayFns<T = any, P = any>(fns: AnyFn[], args?: P): T {
  * 执行数组里的异步函数, 每个函数的返回值作为下一个函数的参数
  * @param fns - 函数数组
  * @param args - 参数
+ * @example invokeArrayAsyncFns([a => Promise.resolve(a + 1), b => Promise.resolve(b + 2)], 2) // 5
  */
 export async function invokeArrayAsyncFns<T = any, P = any>(fns: AnyFn[], args?: P): Promise<T> {
   let _args = clone(args)
@@ -40,7 +42,7 @@ export async function invokeArrayAsyncFns<T = any, P = any>(fns: AnyFn[], args?:
 /**
  * 字符串哈希
  * @param str - 字符串
- * @returns foo => 193420387
+ * @example stringHash('foo') // 193420387
  */
 export function stringHash(str: string): number {
   let hash = 5381
@@ -52,6 +54,7 @@ export function stringHash(str: string): number {
 
 /**
  * uuid
+ * @example uuid() // 3e2e2d4a-9a46-4a7f-8e71-3ca5b1c0e2e2
  */
 export function uuid(): string {
   return Array.from({ length: 16 }, () =>
@@ -68,6 +71,7 @@ const urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwy
  * nanoid
  * @param alphabet - 字符串
  * @param defaultSize - 长度
+ * @example nanoid() // 3e2e2d4a-9a46-4a7f-8e71-3ca5b1c0e2e2
  */
 export function nanoid(defaultSize = 21, alphabet = urlAlphabet) {
   let id = ''
@@ -83,7 +87,7 @@ export function nanoid(defaultSize = 21, alphabet = urlAlphabet) {
 /**
  * 手机号码中间4位隐藏星号
  * @param mobile - 手机号
- * @returns 138****8888
+ * @example hideMobile('13800138000') // 138****8000
  */
 export function hideMobile(mobile: string) {
   return mobile.replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2')
@@ -93,7 +97,8 @@ export function hideMobile(mobile: string) {
  * 键值对拼接成URL参数
  * @param obj - 键值对
  * @param encode - 是否编码
- * @returns a=1&b=2 或者 a%3D1%26b%3D2
+ * @example params2Url({ a: 1, b: 2 }) // a=1&b=2
+ * @example params2Url({ a: 1, b: 2 }, true) // a%3D1%26b%3D2
  */
 export function params2Url(obj: object, encode = false) {
   const params = []
@@ -107,6 +112,7 @@ export function params2Url(obj: object, encode = false) {
 /**
  * 将总秒数转换成 时:分:秒
  * @param seconds - 秒
+ * @example seconds2Time(3600) // 01:00:00
  */
 export function seconds2Time(seconds: number) {
   const hour = Math.floor(seconds / 3600)
@@ -118,6 +124,7 @@ export function seconds2Time(seconds: number) {
 /**
  * 将总秒数转换成 日:时:分:秒
  * @param seconds - 秒
+ * @example seconds2DayTime(86400) // 01:00:00:00
  */
 export function seconds2DayTime(seconds: number) {
   const day = Math.floor(seconds / 86400)
@@ -130,6 +137,7 @@ export function seconds2DayTime(seconds: number) {
 /**
  * 填充0
  * @param num - 数字
+ * @example fillZero(1) // 01
  */
 function fillZero(num: number) {
   /**
@@ -164,4 +172,64 @@ export function toCurryFunc<T = any>(fn: AnyFn) {
       }
     }
   }
+}
+
+/**
+ * 防抖
+ * @param fn - 函数
+ * @param wait - 等待时间
+ * @example debounce(() => console.log(1), 1000)()
+ */
+export function debounce<T = any>(fn: AnyFn, wait = 800) {
+  let timer: string | number | NodeJS.Timeout | undefined
+
+  return function (this: any, ...args: T[]) {
+    timer && clearTimeout(timer)
+    timer = setTimeout(() => {
+      fn.apply(this, args)
+    }, wait)
+  }
+}
+
+/**
+ * 节流
+ * @param fn - 函数
+ * @param wait - 等待时间
+ * @example throttle(() => console.log(1), 1000)()
+ */
+export function throttle<T = any>(fn: AnyFn, wait = 800) {
+  let timer: string | number | NodeJS.Timeout | undefined
+
+  return function (this: any, ...args: T[]) {
+    if (timer)
+      return
+
+    timer = setTimeout(() => {
+      fn.apply(this, args)
+      timer = undefined
+    }, wait)
+  }
+}
+
+export enum OSType {
+  IOS = 1,
+  Android = 2,
+  Other = 3,
+}
+
+/**
+ * 获取操作系统类型
+ * @example getOSType() // 1: IOS, 2: Android, 3: other
+ */
+export function getOSType() {
+  const u = navigator.userAgent
+  const isAndroid = u.includes('Android') || u.includes('Linux')
+  const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+  if (isIOS)
+    return OSType.IOS
+
+  if (isAndroid)
+    return OSType.Android
+
+  return OSType.Other
 }

@@ -93,8 +93,7 @@ export function getByPath(obj: any, path: string, defaultValue: any = 'no value'
  * 忽略对象选中的属性
  * @param obj 来源对象
  * @param paths 要被忽略的属性数组
- * @example const obj = { a: 1, b: 2, c: 3 }
- * omit(obj, ['a', 'b']) // { c: 3 }
+ * @example omit({ a: 1, b: 2, c: 3 }, ['a', 'b']) // { c: 3 }
  */
 export function omit<T extends object, K extends keyof T>(obj: T, paths: K[]) {
   /** 获取对象的属性数组，然后筛出给定的key */
