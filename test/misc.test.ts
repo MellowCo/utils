@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { groupArrayByKey, invokeArrayAsyncFns, invokeArrayFns, isMobileAgent, params2Url, seconds2DayTime, seconds2Time, toCurryFunc } from '../src'
+import { groupArrayByKey, invokeArrayAsyncFns, invokeArrayFns, isMobileAgent, obj2Url, seconds2DayTime, seconds2Time, toCurryFunc } from '../src'
 
 describe('misc', () => {
   it('seconds2Time', () => {
@@ -12,13 +12,13 @@ describe('misc', () => {
     expect(seconds2DayTime(60 * 60 * 24 * 3 + 60 * 60 * 3 + 60 + 10)).toMatchInlineSnapshot('"03:03:01:10"')
   })
 
-  it('params2Url', () => {
-    expect(params2Url({
+  it('obj2Url', () => {
+    expect(obj2Url({
       a: 1,
       b: 2,
     })).toMatchInlineSnapshot('"a=1&b=2"')
 
-    expect(params2Url({
+    expect(obj2Url({
       a: 1,
       b: 2,
     }, true)).toMatchInlineSnapshot('"a%3D1%26b%3D2"')

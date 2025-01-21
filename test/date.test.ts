@@ -40,14 +40,14 @@ describe('date', () => {
 
   it('getFirstDayOfYear', () => {
     expect(getFirstDayOfYear('2023')).toMatchInlineSnapshot('"2023-01-01"')
-    expect(getFirstDayOfYear('', DATE_FORMAT.TO_SECOND)).toMatchInlineSnapshot('"2023-01-01 00:00:00"')
+    expect(getFirstDayOfYear('', DATE_FORMAT.TO_SECOND)).toMatchInlineSnapshot(`"2025-01-01 00:00:00"`)
   })
 
   it('getDaysOfLastMonth', () => {
     expect(getDaysOfLastMonth()).toMatchInlineSnapshot(`
       [
-        "2023-09-01",
-        "2023-09-30",
+        "2024-12-01",
+        "2024-12-31",
       ]
     `)
   })
@@ -55,8 +55,8 @@ describe('date', () => {
   it('getDaysOfWeek', () => {
     expect(getDaysOfWeek()).toMatchInlineSnapshot(`
       [
-        "2023-10-15",
-        "2023-10-21",
+        "2025-01-19",
+        "2025-01-25",
       ]
     `)
   })
@@ -64,20 +64,20 @@ describe('date', () => {
   it('getDaysToNowOfMonth', () => {
     expect(getDaysToNowOfMonth()).toMatchInlineSnapshot(`
       [
-        "2023-10-01",
-        "2023-10-21",
+        "2025-01-01",
+        "2025-01-21",
       ]
     `)
-    expect(getDaysToNowOfMonth('', DATE_FORMAT.TO_MONTH)).toMatchInlineSnapshot(`
+    expect(getDaysToNowOfMonth('', DATE_FORMAT.TO_MONT)).toMatchInlineSnapshot(`
       [
-        "2023-10-01",
-        "2023-10-21",
+        "2025-01",
+        "2025-01",
       ]
     `)
     expect(getDaysToNowOfMonth('2014')).toMatchInlineSnapshot(`
       [
         "2014-01-01",
-        "2023-10-21",
+        "2025-01-21",
       ]
     `)
   })
@@ -85,17 +85,17 @@ describe('date', () => {
   it('isAfter', () => {
     expect(isAfter('20220807')).toBe(true)
     expect(isAfter('20220807', '20210801')).toBe(false)
-    expect(isAfter(new Date(), '20231201')).toBe(true)
+    expect(isAfter(new Date(), '20231201')).toBe(false)
   })
 
   it('isBefore', () => {
     expect(isBefore('20220805')).toBe(false)
     expect(isBefore('20220807', '20210801')).toBe(true)
-    expect(isBefore(new Date(), '20231201')).toBe(false)
+    expect(isBefore(new Date(), '20231201')).toBe(true)
   })
 
   it('isBetween', () => {
-    expect(isBetween('20220801', '20231205')).toBe(true)
+    expect(isBetween('20220801', '20231205')).toBe(false)
     expect(isBetween('20220101', '20220501')).toBe(false)
     expect(isBetween('20220101', '20220501', '20220302')).toBe(true)
   })
