@@ -100,7 +100,7 @@ export function hideMobile(mobile: string) {
  * @example params2Url({ a: 1, b: 2 }) // a=1&b=2
  * @example params2Url({ a: 1, b: 2 }, true) // a%3D1%26b%3D2
  */
-export function params2Url(obj: object, encode = false) {
+export function obj2Url(obj: object, encode = false) {
   const params = []
   for (const key in obj)
     params.push(`${key}=${obj[key]}`)
