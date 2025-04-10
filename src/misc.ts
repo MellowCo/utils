@@ -139,7 +139,7 @@ export function seconds2DayTime(seconds: number) {
  * @param num - 数字
  * @example fillZero(1) // 01
  */
-function fillZero(num: number) {
+export function fillZero(num: number) {
   /**
    * ES6 字符串补全
    * padStart：返回新的字符串，表示用参数字符串从头部（左侧）补全原字符串。

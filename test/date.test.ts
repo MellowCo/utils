@@ -46,8 +46,8 @@ describe('date', () => {
   it('getDaysOfLastMonth', () => {
     expect(getDaysOfLastMonth()).toMatchInlineSnapshot(`
       [
-        "2024-12-01",
-        "2024-12-31",
+        "2025-03-01",
+        "2025-03-31",
       ]
     `)
   })
@@ -55,8 +55,8 @@ describe('date', () => {
   it('getDaysOfWeek', () => {
     expect(getDaysOfWeek()).toMatchInlineSnapshot(`
       [
-        "2025-01-19",
-        "2025-01-25",
+        "2025-04-06",
+        "2025-04-12",
       ]
     `)
   })
@@ -64,20 +64,20 @@ describe('date', () => {
   it('getDaysToNowOfMonth', () => {
     expect(getDaysToNowOfMonth()).toMatchInlineSnapshot(`
       [
-        "2025-01-01",
-        "2025-01-21",
+        "2025-04-01",
+        "2025-04-10",
       ]
     `)
     expect(getDaysToNowOfMonth('', DATE_FORMAT.TO_MONT)).toMatchInlineSnapshot(`
       [
-        "2025-01",
-        "2025-01",
+        "2025-04",
+        "2025-04",
       ]
     `)
     expect(getDaysToNowOfMonth('2014')).toMatchInlineSnapshot(`
       [
         "2014-01-01",
-        "2025-01-21",
+        "2025-04-10",
       ]
     `)
   })
